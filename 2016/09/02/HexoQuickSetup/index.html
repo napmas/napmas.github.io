@@ -15,7 +15,7 @@
 <meta property="og:description" content="什麼是 Hexo？
 以下引自官網 :Hexo 是一個快速、簡單且強大的網誌框架。Hexo 使用 Markdown（或其他渲染引擎）解析您的文章，並在幾秒鐘內，透過漂亮的主題產生靜態檔案。
 雖然過程真的很簡明，但年紀大了記不住事，還是加減記錄一下。">
-<meta property="og:updated_time" content="2016-09-02T08:16:08.000Z">
+<meta property="og:updated_time" content="2016-09-02T08:20:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo quick setup">
 <meta name="twitter:description" content="什麼是 Hexo？
@@ -135,12 +135,17 @@
 <p>p.s 預設為 landscape<br>p.s 多數的 theme 的 github 頁面有含安裝的詳細說明</p>
 <h2 id="佈署"><a href="#佈署" class="headerlink" title="佈署"></a>佈署</h2><hr>
 <p>由於這個網站主要想放技術類的筆記，放到 github 似乎是一個好選擇。</p>
+<p>預先準備</p>
 <ol>
 <li>先建立repository，如果<strong>帳號</strong>名稱叫 abc ，那 <strong>repository</strong> 名稱就叫abc.github.io</li>
 <li>修改 ~/Documents/blog/_config.yml 裡的 deploy 參數 (參考上面設定)</li>
 <li>到 github 個人設定的 Setting 中設定 SSH KEY 好一鍵佈署不用再跟你問密碼</li>
 <li>在 ~/Document/blog 下執行 <code>npm install hexo-deployer-git --save</code></li>
-<li>執行 <code>hexo d</code> ，它就會把你的 markdown 文件 (放在 source目錄下)，其他零零總總的CSS/JS 通通打包到 public 目錄，然後幫你 push 上 github</li>
+</ol>
+<p>發佈</p>
+<ol>
+<li>執行<code>hexo g</code>，把 markdown 文件轉成你要發佈的靜態文件並放到 <code>public</code> 目錄下</li>
+<li>執行 <code>hexo d</code> 把 public 目錄 push 到 github 上</li>
 </ol>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><hr>
 <p>想幹掉舊文章 (eg. 預設的 hellow-world.md)，只要把 source 下對應的文章砍掉即可</p>
@@ -155,7 +160,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://napmas.github.io/2016/09/02/HexoQuickSetup/" data-id="cislhlpfa0000sothiuy3ay2j" class="article-share-link">
+      <a data-url="http://napmas.github.io/2016/09/02/HexoQuickSetup/" data-id="cislhrg4800011ith9js56410" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -189,13 +194,6 @@
         </div>
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           
-  <div class="sidebar-module sidebar-module-inset">
-  <h4>About</h4>
-  <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-
-</div>
-
-
   
 
 
