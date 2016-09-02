@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SonarQube Quick Setup | The Moment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="程式碼分析工具 SonarQube 初步設定與執行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SonarQube Quick Setup">
+<meta property="og:url" content="http://napmas.github.io/2016/09/02/SonarQube-Quick-Setup/index.html">
+<meta property="og:site_name" content="The Moment">
+<meta property="og:description" content="程式碼分析工具 SonarQube 初步設定與執行">
+<meta property="og:image" content="http://napmas.github.io/2016/09/02/SonarQube-Quick-Setup/screenshot.png">
+<meta property="og:updated_time" content="2016-09-02T09:46:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SonarQube Quick Setup">
+<meta name="twitter:description" content="程式碼分析工具 SonarQube 初步設定與執行">
+<meta name="twitter:image" content="http://napmas.github.io/2016/09/02/SonarQube-Quick-Setup/screenshot.png">
+  
+    <link rel="alternate" href="/atom.xml" title="The Moment" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">The Moment</h1>
+  
+    <p class="lead blog-description">阿宅的筆記</p>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-SonarQube-Quick-Setup" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      SonarQube Quick Setup
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2016/09/02/SonarQube-Quick-Setup/" class="article-date"><time datetime="2016-09-02T08:39:19.000Z" itemprop="datePublished">2016-09-02</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SonarQube-Setup/">SonarQube,Setup</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>程式碼分析工具 SonarQube 初步設定與執行<br><a id="more"></a></p>
+<p>SonarQube 分兩個部份，一個是Web管理平台，一個是執行程碼掃描的 Scanner，設定與執行都是分開的，以下也分開解說。</p>
+<h2 id="下載"><a href="#下載" class="headerlink" title="下載"></a>下載</h2><hr>
+<ol>
+<li>從 <a href="http://www.sonarqube.org/downloads/" target="_blank" rel="external">http://www.sonarqube.org/downloads/</a> 下載需要的版本 (eg, sonarqube-6.0.zip)</li>
+<li>從 <a href="http://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner" target="_blank" rel="external">http://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner</a> 下載 LTS 版本</li>
+</ol>
+<p>下載後解到 /opt 下</p>
+<h2 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h2><hr>
+<p>原則上，SonarQube / SonarScanner 都需要利用 dababase 儲存資料，但它內建一個陽春版的讓你測試使用，如果是單機或是體驗用途，可以先不用設定 Database 的部份。</p>
+<h4 id="SonarQube"><a href="#SonarQube" class="headerlink" title="SonarQube"></a>SonarQube</h4><p>都不用改設定就可以跑了，但如果想跑得快一點，可以加大執行的Memory Heap size．</p>
+<p>編輯 <code>/opt/sonarqube-6.0/conf/sonar.properties</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sonar.web.javaOpts=-Xmx2048m -Xms1024m -XX:+HeapDumpOnOutOfMemoryError</div></pre></td></tr></table></figure>
+<h4 id="Sonar-Scanner"><a href="#Sonar-Scanner" class="headerlink" title="Sonar Scanner"></a>Sonar Scanner</h4><p>編輯 <code>/opt/sonar-scanner-2.7/conf/sonar-scanner.properties</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#----- Default SonarQube server</div><div class="line">sonar.host.url=http://localhost:9000</div><div class="line">#----- Default source code encoding</div><div class="line">sonar.sourceEncoding=UTF-8</div></pre></td></tr></table></figure></p>
+<h2 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h2><hr>
+<h4 id="SonarQube-1"><a href="#SonarQube-1" class="headerlink" title="SonarQube"></a>SonarQube</h4><p>執行 <code>/opt/sonarqube-6.0/bin/macosx-universal-64/sonar.sh</code><br>沒意外的話，打開 <a href="http://localhost:9000" target="_blank" rel="external">http://localhost:9000</a> 就會看到它的 web portal , 預設以 admin / admin 登入</p>
+<h4 id="SonarScanner"><a href="#SonarScanner" class="headerlink" title="SonarScanner"></a>SonarScanner</h4><p>在你需要掃描的專案目錄下新增一個檔案 sonar-project.properties<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># Required metadata</div><div class="line">sonar.projectKey=ThousandMilesEye</div><div class="line">sonar.projectName=ThousandMilesEye</div><div class="line">sonar.projectVersion=0.1</div><div class="line"></div><div class="line"># Path to the parent source code directory.</div><div class="line"># Path is relative to the sonar-project.properties file. Replace &quot;\&quot; by &quot;/&quot; on Windows.</div><div class="line"># Since SonarQube 4.2, this property is optional if sonar.modules is set.</div><div class="line"># If not set, SonarQube starts looking for source code from the directory containing</div><div class="line"># the sonar-project.properties file.</div><div class="line">sonar.sources=SomeFolderPointTo/src</div></pre></td></tr></table></figure></p>
+<p>接著再執行 /opt/sonar-scanner-2.7/bin/sonar-scanner 就會開始分析你的程式碼</p>
+<p>分析完成後，就會在 Web portal 裡的 Dashboard 中看到分析結果，有問題的部份，會有建議修正的方式，對於提昇程式碼品質相當不賴。<br><img src="/2016/09/02/SonarQube-Quick-Setup/screenshot.png" alt="Screenshot" title="Screenshot"></p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://napmas.github.io/2016/09/02/SonarQube-Quick-Setup/" data-id="cisliejfx00043athn11e7yop" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SonarQube/">SonarQube</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2016/09/02/HexoQuickSetup/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Hexo quick setup</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube-Setup/">SonarQube,Setup</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">九月 2016</a><span class="sidebar-module-list-count">2</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/09/02/SonarQube-Quick-Setup/">SonarQube Quick Setup</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/02/HexoQuickSetup/">Hexo quick setup</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Yu-Wen Huang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>
