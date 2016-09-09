@@ -5,13 +5,13 @@
   
   <title>Creating Flow In Node Red - 1 | The Moment</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在 IoT 裡常被提到的 Node Red, 弄一個玩玩看看它有什麼神妙之處。安裝太簡單，直接照著官網的教學做就好。安裝完執行 node-red 就可以啟動本機的伺服器，瀏覽器輸入 http://localhost:1880 即可連上去開發程式渫程。 
+  <meta name="description" content="在 IoT 裡常被提到的 Node Red, 弄一個玩玩看看它有什麼神妙之處。安裝太簡單，直接照著官網的教學做就好。安裝完執行 node-red 就可以啟動本機的伺服器，瀏覽器輸入 http://localhost:1880 即可連上去進行開發。 
 Node Rede 裡頭的主要的東西叫 Flow ，可以視為一件工作或是程序，先依官方的教學建一組。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Creating Flow In Node Red - 1">
 <meta property="og:url" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/index.html">
 <meta property="og:site_name" content="The Moment">
-<meta property="og:description" content="在 IoT 裡常被提到的 Node Red, 弄一個玩玩看看它有什麼神妙之處。安裝太簡單，直接照著官網的教學做就好。安裝完執行 node-red 就可以啟動本機的伺服器，瀏覽器輸入 http://localhost:1880 即可連上去開發程式渫程。 
+<meta property="og:description" content="在 IoT 裡常被提到的 Node Red, 弄一個玩玩看看它有什麼神妙之處。安裝太簡單，直接照著官網的教學做就好。安裝完執行 node-red 就可以啟動本機的伺服器，瀏覽器輸入 http://localhost:1880 即可連上去進行開發。 
 Node Rede 裡頭的主要的東西叫 Flow ，可以視為一件工作或是程序，先依官方的教學建一組。">
 <meta property="og:image" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/flow-1.png">
 <meta property="og:image" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-inject.png">
@@ -20,10 +20,10 @@ Node Rede 裡頭的主要的東西叫 Flow ，可以視為一件工作或是程�
 <meta property="og:image" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-http-request.png">
 <meta property="og:image" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-function-2.png">
 <meta property="og:image" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-debug-tab-1.png">
-<meta property="og:updated_time" content="2016-09-09T09:38:15.000Z">
+<meta property="og:updated_time" content="2016-09-09T09:39:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Creating Flow In Node Red - 1">
-<meta name="twitter:description" content="在 IoT 裡常被提到的 Node Red, 弄一個玩玩看看它有什麼神妙之處。安裝太簡單，直接照著官網的教學做就好。安裝完執行 node-red 就可以啟動本機的伺服器，瀏覽器輸入 http://localhost:1880 即可連上去開發程式渫程。 
+<meta name="twitter:description" content="在 IoT 裡常被提到的 Node Red, 弄一個玩玩看看它有什麼神妙之處。安裝太簡單，直接照著官網的教學做就好。安裝完執行 node-red 就可以啟動本機的伺服器，瀏覽器輸入 http://localhost:1880 即可連上去進行開發。 
 Node Rede 裡頭的主要的東西叫 Flow ，可以視為一件工作或是程序，先依官方的教學建一組。">
 <meta name="twitter:image" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/flow-1.png">
   
@@ -120,7 +120,7 @@ Node Rede 裡頭的主要的東西叫 Flow ，可以視為一件工作或是程�
 
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在 IoT 裡常被提到的 Node Red, 弄一個玩玩看看它有什麼神妙之處。<br>安裝太簡單，直接照著<a href="http://nodered.org/docs/getting-started/installation" target="_blank" rel="external">官網</a>的教學做就好。<br>安裝完執行 <code>node-red</code> 就可以啟動本機的伺服器，瀏覽器輸入 <code>http://localhost:1880</code> 即可連上去開發程式渫程。 </p>
+        <p>在 IoT 裡常被提到的 Node Red, 弄一個玩玩看看它有什麼神妙之處。<br>安裝太簡單，直接照著<a href="http://nodered.org/docs/getting-started/installation" target="_blank" rel="external">官網</a>的教學做就好。<br>安裝完執行 <code>node-red</code> 就可以啟動本機的伺服器，瀏覽器輸入 <code>http://localhost:1880</code> 即可連上去進行開發。 </p>
 <p>Node Rede 裡頭的主要的東西叫 Flow ，可以視為一件工作或是程序，先依官方的教學建一組。<br><a id="more"></a></p>
 <h2 id="Flow-1"><a href="#Flow-1" class="headerlink" title="Flow 1"></a>Flow 1</h2><hr>
 <img src="/2016/09/09/Create-Flow-In-Node-Red-1/flow-1.png" alt="Flow-1" title="Flow-1">
@@ -145,7 +145,7 @@ Node Rede 裡頭的主要的東西叫 Flow ，可以視為一件工作或是程�
     
 
     <footer class="article-footer">
-      <a data-url="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/" data-id="cisvklled0000mnthp1nctb1v" class="article-share-link">
+      <a data-url="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/" data-id="cisvkn1hq0005pwthwx6swwqs" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
