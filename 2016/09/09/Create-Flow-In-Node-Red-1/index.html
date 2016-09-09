@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Creating Flow In Node Red - 1 | The Moment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在 IoT 裡常被提到的 Node Red, 弄一個玩玩看看它有什麼神妙之處安裝太簡單，直接照著官網的教學做就好。
+Node Rede 裡頭的主要的東西叫 Flow ，可以視為一件工作或是程序，先依官方的教學建一組。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Creating Flow In Node Red - 1">
+<meta property="og:url" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/index.html">
+<meta property="og:site_name" content="The Moment">
+<meta property="og:description" content="在 IoT 裡常被提到的 Node Red, 弄一個玩玩看看它有什麼神妙之處安裝太簡單，直接照著官網的教學做就好。
+Node Rede 裡頭的主要的東西叫 Flow ，可以視為一件工作或是程序，先依官方的教學建一組。">
+<meta property="og:image" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/flow-1.png">
+<meta property="og:image" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-inject.png">
+<meta property="og:image" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-debug.png">
+<meta property="og:image" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-function.png">
+<meta property="og:image" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-http-request.png">
+<meta property="og:image" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-function-2.png">
+<meta property="og:image" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-debug-tab-1.png">
+<meta property="og:updated_time" content="2016-09-09T08:11:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Creating Flow In Node Red - 1">
+<meta name="twitter:description" content="在 IoT 裡常被提到的 Node Red, 弄一個玩玩看看它有什麼神妙之處安裝太簡單，直接照著官網的教學做就好。
+Node Rede 裡頭的主要的東西叫 Flow ，可以視為一件工作或是程序，先依官方的教學建一組。">
+<meta name="twitter:image" content="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/flow-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="The Moment" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">The Moment</h1>
+  
+    <p class="lead blog-description">阿宅的筆記</p>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-Create-Flow-In-Node-Red-1" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Creating Flow In Node Red - 1
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2016/09/09/Create-Flow-In-Node-Red-1/" class="article-date"><time datetime="2016-09-09T06:25:39.000Z" itemprop="datePublished">2016-09-09</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node-red/">node-red</a> / <a class="article-category-link" href="/categories/node-red/flow/">flow</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在 IoT 裡常被提到的 Node Red, 弄一個玩玩看看它有什麼神妙之處<br>安裝太簡單，直接照著<a href="http://nodered.org/docs/getting-started/installation" target="_blank" rel="external">官網</a>的教學做就好。</p>
+<p>Node Rede 裡頭的主要的東西叫 Flow ，可以視為一件工作或是程序，先依官方的教學建一組。<br><a id="more"></a></p>
+<h2 id="Flow-1"><a href="#Flow-1" class="headerlink" title="Flow 1"></a>Flow 1</h2><hr>
+<img src="/2016/09/09/Create-Flow-In-Node-Red-1/flow-1.png" alt="Flow-1" title="Flow-1">
+<p>上圖是官網的兩個教學(<a href="http://nodered.org/docs/getting-started/first-flow" target="_blank" rel="external">Creating your first flow</a>、<a href="http://nodered.org/docs/getting-started/second-flow" target="_blank" rel="external">Creating your secound flow</a>)攪在一起的結果。</p>
+<p>最左方程式進入點 (inject node)點兩下打開屬性視窗，把 Inject once at start 勾起來，就會在 node-red 跑起來或是deploy 成功後執行。<br><img src="/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-inject.png" alt="Inject Node Setting" title="Inject Node Setting"></p>
+<p>Inject node 會產生一個 payload 的資料(在這個例子值為timestamp)放在 msg 物件裡往後丟，所以最簡單的下一個動作就是透過綠色 debug node 看看這個值。</p>
+<p>Debug node 只會顯示資料(及錯誤)，不會做其外額外的事情，預設會把 msg.payload 丟到右邊 sidebar 的 Debug Tab 中，若是有多個 Flow ，可以點選 current flow 按紐只顯示目前開啟的 flow 的 debug 訊息就好。<br><img src="/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-debug.png" alt="Debug Node Setting" title="Debug Node Setting"></p>
+<p>只顯示 timestamp 太無聊了對吧，所以官網接著就教我們做正事(?), 把 Timestamp 轉成我們看得懂的時間日期格式。方法是把 Inject Node 的 msg.payload(i.e timestamp)，餵給一個 Function Node ，然後再吐給 Debug Node 顯示出來， Function Node 裡頭的設定如下<br><img src="/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-function.png" alt="Function Node Setting" title="Function Node Setting"></p>
+<figure class="highlight plain"><figcaption><span>Source code in function node</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// Create a Date object from the payload</div><div class="line">var date = new Date(msg.payload);</div><div class="line"></div><div class="line">// Change the payload to be a formatted Date string</div><div class="line">msg.payload = date.toString();</div><div class="line">// Return the message so it can be sent on</div><div class="line">return msg;</div></pre></td></tr></table></figure>
+<p>太好了，我們會生火了，萬歲 !! 但在 Internet 時代，火苗都在雲端上，那我們要怎麼 cosplay 普羅米修斯把火苗取下來呢，這就是第二個範例教的，透過 http request node 可以達到的功能，方法很簡單，只要指定 url 及 method 就可以了。取完的資料一樣會放在 msg.payload 中往下一個 Node 傳。</p>
+<p>p.s 這邊用的 http request node 是在 function 類別中的，另外還有一個 http request node 是 input 類的，在下一個 flow 會用到<br>p.s2 設定中可以指定 method 為 post ，但… 參數好像還是要用 get 方法傳 XD<br><img src="/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-http-request.png" alt="Http Request Node Setting" title="Http Request Node Setting"></p>
+<p>範例中在取完<del>火苗</del>資料後還加了個 function node 做資料擷取，原本網址的回傳內容內含一大堆的html tag， function node 在找到 span 後取出　demand 及　frequency 兩個值處理完後放在 msg.payload 中，另外再依 frequency 的值建立另一個回傳值(boolean)放在msg<strong>2</strong>.payload ，再把兩個值放在 array 中丟出來<br>所以這個 function node 圖示上的 output 就會有兩個點，可以分別拉給 debug node 顯示。<br><img src="/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-function-2.png" alt="Function node 2 Setting" title="Function node 2 Setting"><br><figure class="highlight plain"><figcaption><span>source code in function node</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">if (~msg.payload.indexOf(&quot;&lt;span&quot;)) &#123;</div><div class="line">    var dem = msg.payload.split(&apos;Demand:&apos;)[1].split(&quot;MW&quot;)[0];</div><div class="line">    var fre = msg.payload.split(&apos;Frequency:&apos;)[1].split(&quot;Hz&quot;)[0];</div><div class="line"></div><div class="line">    msg.payload = &#123;&#125;;</div><div class="line">    msg.payload.demand = parseInt(dem.split(&quot;&gt;&quot;)[1].split(&quot;&lt;&quot;)[0]);</div><div class="line">    msg.payload.frequency = parseFloat(fre.split(&quot;&gt;&quot;)[1].split(&quot;&lt;&quot;)[0]);</div><div class="line"></div><div class="line">    msg2 = &#123;&#125;;</div><div class="line">    msg2.payload = (msg.payload.frequency &gt;= 50) ? true : false;</div><div class="line"></div><div class="line">    return [msg,msg2];</div><div class="line">&#125;</div><div class="line">return null;</div></pre></td></tr></table></figure></p>
+<p>都搞定後，按下右上方的 deploy 就可以把這個 flow 轉成程式碼佈署到 server 上並觀察執行結果，沒意外的話可以在 debug tab 看到結果如下<br><img src="/2016/09/09/Create-Flow-In-Node-Red-1/flow-1-debug-tab-1.png" alt="Result in Debug tab" title="Result in Debug tab"></p>
+<p>會看到第一個訊息是轉過的timestamp ，第二個才是原始的timestamp，這也看出node red 仍保有 javascript 不同步的老問題，這在之後會造成一些麻煩，晚一點再提了。</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://napmas.github.io/2016/09/09/Create-Flow-In-Node-Red-1/" data-id="cisvj8g2i00002athfr1znzde" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-red/">node-red</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2016/09/02/SonarQube-Quick-Setup/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">SonarQube Quick Setup</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2016/09/09/Creating-Flow-In-Node-Red-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">Creating Flow In Node Red - 2</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/">node-red</a><span class="sidebar-module-list-count">2</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/flow/">flow</a><span class="sidebar-module-list-count">1</span></li></ul></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node-red/">node-red</a><span class="sidebar-module-list-count">2</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-red/" style="font-size: 20px;">node-red</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">九月 2016</a><span class="sidebar-module-list-count">4</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/09/09/Creating-Flow-In-Node-Red-2/">Creating Flow In Node Red - 2</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/09/Create-Flow-In-Node-Red-1/">Creating Flow In Node Red - 1</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/02/SonarQube-Quick-Setup/">SonarQube Quick Setup</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/02/HexoQuickSetup/">Hexo quick setup</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Yu-Wen Huang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>
