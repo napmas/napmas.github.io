@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Creating Flow in Node Red - 3 | The Moment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="先前建了兩個 node-red 簡單的 flow ，現在試著做做正事。
+常見的 IoT 應用通常都是 event/trigger 的型式，正好最近當紅的 pokemon 的怪物偵測符合 
+
+ if pokemon spawn then trigger notification 
+
+這樣的條件，那就試著用 Node Red 來玩玩看好了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Creating Flow in Node Red - 3">
+<meta property="og:url" content="http://napmas.github.io/2016/09/10/Creating-Flow-in-Node-Red-3/index.html">
+<meta property="og:site_name" content="The Moment">
+<meta property="og:description" content="先前建了兩個 node-red 簡單的 flow ，現在試著做做正事。
+常見的 IoT 應用通常都是 event/trigger 的型式，正好最近當紅的 pokemon 的怪物偵測符合 
+
+ if pokemon spawn then trigger notification 
+
+這樣的條件，那就試著用 Node Red 來玩玩看好了">
+<meta property="og:image" content="http://napmas.github.io/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3.png">
+<meta property="og:image" content="http://napmas.github.io/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3-inject.png">
+<meta property="og:image" content="http://napmas.github.io/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3-pokemon.png">
+<meta property="og:image" content="http://napmas.github.io/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3-notification.png">
+<meta property="og:updated_time" content="2016-09-10T08:46:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Creating Flow in Node Red - 3">
+<meta name="twitter:description" content="先前建了兩個 node-red 簡單的 flow ，現在試著做做正事。
+常見的 IoT 應用通常都是 event/trigger 的型式，正好最近當紅的 pokemon 的怪物偵測符合 
+
+ if pokemon spawn then trigger notification 
+
+這樣的條件，那就試著用 Node Red 來玩玩看好了">
+<meta name="twitter:image" content="http://napmas.github.io/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3.png">
+  
+    <link rel="alternate" href="/atom.xml" title="The Moment" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">The Moment</h1>
+  
+    <p class="lead blog-description">阿宅的筆記</p>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-Creating-Flow-in-Node-Red-3" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Creating Flow in Node Red - 3
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2016/09/10/Creating-Flow-in-Node-Red-3/" class="article-date"><time datetime="2016-09-10T07:24:46.000Z" itemprop="datePublished">2016-09-10</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node-red/">node-red</a> / <a class="article-category-link" href="/categories/node-red/flow/">flow</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先前建了兩個 node-red 簡單的 flow ，現在試著做做正事。</p>
+<p>常見的 IoT 應用通常都是 event/trigger 的型式，正好最近當紅的 pokemon 的怪物偵測符合 </p>
+<blockquote>
+<p> if pokemon spawn then trigger notification </p>
+</blockquote>
+<p>這樣的條件，那就試著用 Node Red 來玩玩看好了</p>
+<a id="more"></a>
+<h2 id="Creating-pokemon-detecting-function-node"><a href="#Creating-pokemon-detecting-function-node" class="headerlink" title="Creating pokemon detecting function  node"></a>Creating pokemon detecting function  node</h2><hr>
+<p>偵測 pokemon 出現與否當然不會是 Node Red 內建的 Node ，好在現在網路上的 Open source 很多，我們只要找一個能用的來把它包成能運作的 Node 就好，仿照 <a href="/2016/09/09/Creating-Flow-In-Node-Red-2/" title="Creating Flow In Node Red - 2">Creating Flow In Node Red - 2</a> 裡介紹的方法建立自定的 node , 以下是執行的步驟</p>
+<ul>
+<li><code>在 ~/.node-red/nodes</code> 下建立目錄 <code>node-red-node-pokemon</code></li>
+<li>執行 <code>npm init</code> 建立 <code>package.json</code> 並做適當的編輯 (加入node-red 屬性)<figure class="highlight json"><figcaption><span>package.json</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"node-rede-note-pokemon"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="attr">"description"</span>: <span class="string">"Node Red node to show pokemon "</span>,</div><div class="line">  <span class="attr">"main"</span>: <span class="string">"pokemon.js"</span>,</div><div class="line">  <span class="attr">"scripts"</span>: &#123;</div><div class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"keywords"</span>: [</div><div class="line">    <span class="string">"node-red"</span>,</div><div class="line">    <span class="string">"pokemon"</span></div><div class="line">  ],</div><div class="line">  <span class="attr">"node-red"</span>: &#123;</div><div class="line">    <span class="attr">"nodes"</span>: &#123;</div><div class="line">      <span class="attr">"pokemon"</span>: <span class="string">"pokemon.js"</span></div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+<li>執行 <code>npm install pokemon-go-node-api --save</code> 安裝人家寫好的 pokemon 偵測模組 </li>
+<li>編輯 <code>pokemon.js</code>，其中用戶名稱、密碼、經緯座標等四個值是由 Node Red 的 form 放在 config 送出來，稍後鄉 pokemon.html 中會看到對應的輸入欄位，其他部份基本上是依 pokemon go node api 的範例做簡單的改寫而已，有興趣了解這個 API 的可以到 <a href="https://github.com/Armax/Pokemon-GO-node-api" target="_blank" rel="external">Github</a>上研究<figure class="highlight javascript"><figcaption><span>pokemon.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">RED</span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">PokemonNode</span>(<span class="params">config</span>) </span>&#123;</div><div class="line">        RED.nodes.createNode(<span class="keyword">this</span>,config);</div><div class="line">        <span class="keyword">var</span> node = <span class="keyword">this</span>;</div><div class="line">        <span class="keyword">this</span>.on(<span class="string">'input'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</div><div class="line">            node.log(<span class="string">'pokemon go on input'</span>);</div><div class="line">            <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'pokemon-go-node-api'</span>);</div><div class="line">            <span class="keyword">var</span> location = &#123;</div><div class="line">                type: <span class="string">'coords'</span>,</div><div class="line">                coords : &#123;</div><div class="line">                    latitude:  config.lat,</div><div class="line">                    longitude: config.lng,</div><div class="line">                    altitude: <span class="number">1</span></div><div class="line">                &#125;</div><div class="line">            &#125;;</div><div class="line">            msg.pokemons = [];</div><div class="line">            <span class="keyword">var</span> username = process.env.PGO_USERNAME || config.username;</div><div class="line">            <span class="keyword">var</span> password = process.env.PGO_PASSWORD || config.password;</div><div class="line">            <span class="keyword">var</span> provider = process.env.PGO_PROVIDER || <span class="string">'google'</span>;</div><div class="line">            a.init(username, password, location, provider, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span> (err) &#123;</div><div class="line">                  node.log( err );</div><div class="line">                  <span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                node.log(<span class="string">'1[i] Current location: '</span> + a.playerInfo.locationName);</div><div class="line">                node.log(<span class="string">'1[i] lat/long/alt: : '</span> + a.playerInfo.latitude + <span class="string">' '</span> + a.playerInfo.longitude + <span class="string">' '</span> + a.playerInfo.altitude);</div><div class="line">                a.GetProfile(<span class="function"><span class="keyword">function</span>(<span class="params">err, profile</span>) </span>&#123;</div><div class="line">                    <span class="keyword">if</span> (err) &#123;</div><div class="line">                        node.log( <span class="string">"Get profile error : "</span> + err ) ;</div><div class="line">                        <span class="keyword">return</span> ;</div><div class="line">                    &#125;</div><div class="line">                    a.Heartbeat(<span class="function"><span class="keyword">function</span>(<span class="params">err,hb</span>) </span>&#123;</div><div class="line">                        <span class="keyword">if</span> (err) &#123;</div><div class="line">                            node.log( <span class="string">"Heart beat error : "</span> + err );</div><div class="line">                            <span class="keyword">return</span>;</div><div class="line">                        &#125;</div><div class="line">                        <span class="comment">// get near by pokemon</span></div><div class="line">                        <span class="keyword">for</span> (<span class="keyword">var</span> i = hb.cells.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</div><div class="line">                            <span class="keyword">if</span>(hb.cells[i].NearbyPokemon[<span class="number">0</span>]) &#123;</div><div class="line">                                <span class="keyword">var</span> pokemon = a.pokemonlist[<span class="built_in">parseInt</span>(hb.cells[i].NearbyPokemon[<span class="number">0</span>].PokedexNumber)<span class="number">-1</span>];</div><div class="line">                                node.log(<span class="string">'1[+] There is a '</span> + pokemon.name + <span class="string">' near.'</span>);</div><div class="line">                                msg.pokemons.push( <span class="string">"There is a "</span> + pokemon.name + <span class="string">" near."</span>);</div><div class="line">                            &#125;</div><div class="line">                        &#125;</div><div class="line">                        <span class="comment">// get spawned pokemon</span></div><div class="line">                        <span class="keyword">for</span> (i = hb.cells.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</div><div class="line">                            <span class="keyword">for</span> (<span class="keyword">var</span> j = hb.cells[i].MapPokemon.length - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</div><div class="line">                                <span class="keyword">var</span> currentPokemon = hb.cells[i].MapPokemon[j];</div><div class="line">                                (<span class="function"><span class="keyword">function</span>(<span class="params">currentPokemon</span>) </span>&#123;</div><div class="line">                                    <span class="keyword">var</span> pokedexInfo = a.pokemonlist[<span class="built_in">parseInt</span>(currentPokemon.PokedexTypeId)<span class="number">-1</span>];</div><div class="line">                                    node.log(<span class="string">'[+] There is a '</span> + pokedexInfo.name + <span class="string">' near!! U can try to catch it!'</span>);</div><div class="line">                                    msg.pokemons.push( <span class="string">"There is a "</span> + pokedexInfo.name +<span class="string">" U can try to catch."</span>);</div><div class="line">                                &#125;)(currentPokemon);</div><div class="line">                            &#125;</div><div class="line">                        &#125;</div><div class="line">                    &#125;);</div><div class="line">                &#125;);</div><div class="line">            &#125;);</div><div class="line">            node.send(msg);</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    RED.nodes.registerType(<span class="string">"pokemon"</span>,PokemonNode);                        </div></pre></td></tr></table></figure></li>
+<li>編輯 pokemon.html，第一個 script 區塊中，default 屬性要把要讓使用者在 Node-red 中填入的數值放進來，如果有預設值，可以指定給value屬性，這邊如果不加， Node Red 中會有欄位可以填，但數值無法透過 config 變數帶到 pokemon.js 去。第二個 script 區塊則是指定之後在 Node Red 中的輸入欄位 (HTML)<figure class="highlight javascript"><figcaption><span>pokemon.html</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line">    RED.nodes.registerType(<span class="string">'pokemon'</span>,&#123;</div><div class="line">        category: <span class="string">'function'</span>,</div><div class="line">        color: <span class="string">'#a6bbcf'</span>,</div><div class="line">        defaults: &#123;</div><div class="line">            name: &#123;value:<span class="string">"Pokemon"</span>&#125;,</div><div class="line">            username: &#123;value: <span class="string">""</span> &#125;,</div><div class="line">            password: &#123; value: <span class="string">""</span> &#125;,</div><div class="line">            lat: &#123;value : <span class="string">"25.036922"</span>&#125;,</div><div class="line">            lng: &#123;value : <span class="string">"121.523681"</span>&#125;,</div><div class="line">            alt: &#123;value : <span class="string">"0"</span>&#125;</div><div class="line">        &#125;,</div><div class="line">        inputs:<span class="number">1</span>,</div><div class="line">        outputs:<span class="number">1</span>,</div><div class="line">        icon: <span class="string">"file.png"</span>,</div><div class="line">        label: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name||<span class="string">"pokemon"</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script type=<span class="string">"text/x-red"</span> data-template-name=<span class="string">"pokemon"</span>&gt;</div><div class="line">    &lt;div class="form-row"&gt;</div><div class="line">        &lt;label for="node-input-name"&gt;&lt;i class="icon-tag"&gt;&lt;/i&gt; Name&lt;/label&gt;</div><div class="line">        &lt;input type="text" id="node-input-name" placeholder="Name"&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div class="form-row"&gt;</div><div class="line">        &lt;label for="node-input-username"&gt;&lt;i class="icon-tag"&gt;&lt;/i&gt; Username&lt;/label&gt;</div><div class="line">        &lt;input type="text" id="node-input-username" placeholder="Google mail"&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div class="form-row"&gt;</div><div class="line">        &lt;label for="node-input-password"&gt;&lt;i class="icon-tag"&gt;&lt;/i&gt; Password&lt;/label&gt;</div><div class="line">        &lt;input type="password" id="node-input-password" placeholder="Password"&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div class="form-row"&gt;</div><div class="line">        &lt;label for="node-input-lat"&gt;&lt;i class="icon-tag"&gt;&lt;/i&gt; 緯度&lt;/label&gt;</div><div class="line">        &lt;input type="text" id="node-input-lat" placeholder="Latitude"&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div class="form-row"&gt;</div><div class="line">        &lt;label for="node-input-lng"&gt;&lt;i class="icon-tag"&gt;&lt;/i&gt; 經度&lt;/label&gt;</div><div class="line">        &lt;input type="lng" id="node-input-lng" placeholder="Longitude"&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div class="form-row"&gt;</div><div class="line">        &lt;label for="node-input-alt"&gt;&lt;i class="icon-tag"&gt;&lt;/i&gt; 海拔&lt;/label&gt;</div><div class="line">        &lt;input type="lng" id="node-input-alt" placeholder="Altitude"&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;script type="text/x-red" data-help-name="pokemon"&gt;</div><div class="line">    &lt;p&gt;A simple node that shows nearby pokemon&lt;/p&gt;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Creating-Notification-output-node"><a href="#Creating-Notification-output-node" class="headerlink" title="Creating Notification output node"></a>Creating Notification output node</h2><hr>
+<p>能偵測 pokemon 後，除了在 console log 中看到訊息外，還希望能直接通知使用者，這個部份 Node Red 內建了 Email / Twitter 兩種方式，但這樣感覺不夠及時，沒開 Mail、網頁就看不到了，最好是直接在桌面上跳出提示訊息，這意謂著，又要客製了 XD </p>
+<p>好在這同樣有人家寫好的Library 可以用 (Open Source 萬歲!!!)，那就依樣畫葫蘆再建一個自訂的 Node 吧。</p>
+<ul>
+<li>在 <code>~/.node-red/nodes</code> 下建立 <code>node-red-node-notifier</code> 目錄</li>
+<li>執行 <code>npm init</code> 建立 <code>package.json</code> 並做適當的編輯 (加入node-red 屬性)<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"node-red-node-notifier"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="attr">"description"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"main"</span>: <span class="string">"notifier.js"</span>,</div><div class="line">  <span class="attr">"scripts"</span>: &#123;</div><div class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"keywords"</span>: [</div><div class="line">    <span class="string">"node-red"</span>,</div><div class="line">    <span class="string">"notifier"</span></div><div class="line">  ],</div><div class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</div><div class="line">  <span class="attr">"dependencies"</span>: &#123;</div><div class="line">    <span class="attr">"node-notifier"</span>: <span class="string">"^4.6.1"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"node-red"</span>: &#123;</div><div class="line">    <span class="attr">"nodes"</span>: &#123;</div><div class="line">      <span class="attr">"notifier"</span>: <span class="string">"notifier.js"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+<li>編輯 <code>notifier.js</code><figure class="highlight javascript"><figcaption><span>notifier.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">RED</span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">NotifierNode</span>(<span class="params">config</span>) </span>&#123;</div><div class="line">        RED.nodes.createNode(<span class="keyword">this</span>,config);</div><div class="line">        <span class="keyword">var</span> node = <span class="keyword">this</span>;</div><div class="line">        <span class="keyword">this</span>.on(<span class="string">'input'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (msg.pokemons.length &gt; <span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">const</span> notifier = <span class="built_in">require</span>(<span class="string">'node-notifier'</span>);</div><div class="line">                <span class="keyword">var</span> alarm_msg = <span class="string">""</span></div><div class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> msg.pokemons ) &#123;</div><div class="line">                    alarm_msg += msg.pokemons[i] + <span class="string">"\n"</span>;</div><div class="line">                &#125;</div><div class="line">                notifier.notify (&#123;</div><div class="line">                    <span class="string">"title"</span>: <span class="string">"Pokemon !!"</span>,</div><div class="line">                    <span class="string">"message"</span>: alarm_msg</div><div class="line">                &#125;);</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    RED.nodes.registerType(<span class="string">"notifier"</span>,NotifierNode);</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+<li>編輯 <code>notifier.html</code> ，這個 node 的 category 記得要改成 output , 並把 output 改為 0 <figure class="highlight javascript"><figcaption><span>notifier.html</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line">    RED.nodes.registerType(<span class="string">'notifier'</span>,&#123;</div><div class="line">        category: <span class="string">'output'</span>,</div><div class="line">        color: <span class="string">'#a6bbcf'</span>,</div><div class="line">        defaults: &#123;</div><div class="line">            name: &#123;value:<span class="string">"Mac Notifier"</span>&#125;</div><div class="line">        &#125;,</div><div class="line">        inputs:<span class="number">1</span>,</div><div class="line">        outputs:<span class="number">0</span>,</div><div class="line">        icon: <span class="string">"file.png"</span>,</div><div class="line">        label: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name||<span class="string">"Mac Notifier"</span>;</div><div class="line">        &#125;,</div><div class="line">        align: <span class="string">"right"</span></div><div class="line">    &#125;);</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line"></div><div class="line">&lt;script type=<span class="string">"text/x-red"</span> data-template-name=<span class="string">"notifier"</span>&gt;</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-row"</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"node-input-name"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"icon-tag"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> Name<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"node-input-name"</span> <span class="attr">placeholder</span>=<span class="string">"Name"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">&lt;script type=<span class="string">"text/x-red"</span> data-help-name=<span class="string">"notifier"</span>&gt;</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>A simple node that shows notifications<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Creating-flow"><a href="#Creating-flow" class="headerlink" title="Creating flow"></a>Creating flow</h2><hr>
+<p>好了，現在需要的 node 都有了，接著只要把流程串好就好了，長得像下圖這樣<br><img src="/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3.png" alt="flow-3.png" title=""></p>
+<p>很直覺，對吧 ?! </p>
+<p>不，一點也不，為什麼在 notifier 前要加上 兩秒的 delay ?!!! </p>
+<p>熟悉 javascript 開發的朋友應該猜得到，又是非同步的問題，在上面的流程中，pokemon node 去抓 pokemon 資料<strong>的同時</strong>，流程已經走到 notifier 了，這個時候資料還沒準備好，所以值都會是空的，用寫程式的方法可以 callback 方式處理，但在<strong>流程圖</strong>中，一時想不到什麼好解法(再弄一個 event trigger 的 flow 接資料  ? XD)，就硬塞一個 delay node 假裝沒這件事，實際上，並沒有解決這個問題，但至少至少，可以看到期望的結果了。</p>
+<p>其中 Inject Node 設定如下圖，除了一開始執行的選項外，還設定每隔十秒重新執行一次<br><img src="/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3-inject.png" alt="Inject Node Setting" title="Inject Node Setting"></p>
+<p>Pokemon Node 的設定如下圖，程式中需要的參數都在這邊設定，再帶進 pokemon.js 裡<br><img src="/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3-pokemon.png" alt="Pokemon Node Setting" title="Pokemon Node Setting"></p>
+<p>Deploy 看看吧 !!! 萬歲，我身邊有一隻波波可以抓 orz<br><img src="/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3-notification.png" alt="Mac Notification Result" title="Mac Notification Result"></p>
+<p>這樣搞完後發現，好像也不那麼像 IoT 的流程，加上那個不同步的問題，嗯嗯… Node Red 有 MQTT 的 Input/Output Node ，晚一點用它來試試看好了@@</p>
+<p>另一方面，在商業邏輯複雜到一定程度後， Node Red 內建的 Node 很明顯的無法全部支援到，勢必要自己寫 Node, 但這樣一來… 我幹麻不直接都在程式裡幹完就好了 XD XD 若說真要省事，就要有人家寫好的 Node library 支援，只是很可惜的，小公司為了十萬塊把捧著 device connecting node 上門找合作的 A 公司趕走惹，未來似乎只能科科，科科 (嘆</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://napmas.github.io/2016/09/10/Creating-Flow-in-Node-Red-3/" data-id="ciswy74pm000csoth6ctx141c" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-red/">node-red</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2016/09/09/Creating-Flow-In-Node-Red-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Creating Flow In Node Red - 2</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/">node-red</a><span class="sidebar-module-list-count">3</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/flow/">flow</a><span class="sidebar-module-list-count">2</span></li></ul></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node-red/">node-red</a><span class="sidebar-module-list-count">3</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-red/" style="font-size: 20px;">node-red</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">九月 2016</a><span class="sidebar-module-list-count">5</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/09/10/Creating-Flow-in-Node-Red-3/">Creating Flow in Node Red - 3</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/09/Creating-Flow-In-Node-Red-2/">Creating Flow In Node Red - 2</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/09/Create-Flow-In-Node-Red-1/">Creating Flow In Node Red - 1</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/02/SonarQube-Quick-Setup/">SonarQube Quick Setup</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/02/HexoQuickSetup/">Hexo quick setup</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Yu-Wen Huang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>
