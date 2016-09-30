@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Visual recognition of Google/IBM | The Moment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="這兩天掉下來的題目，雖然不是掉在我身上，但貌似不錯玩就摸了一下。而原本要 servey 的對像是 IBM 的 visual-recognition，實際弄了之後發現現階段 ibm 的 api 能做的貌似不多，就順便看看先前玩過的 google cloude vision ，果然有刺激有進步，比三月的時候又強化了不少，用這個機會把心得一併寫一寫。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Visual recognition of Google/IBM">
+<meta property="og:url" content="http://napmas.github.io/2016/09/30/Visual-recognition-of-Google-IBM/index.html">
+<meta property="og:site_name" content="The Moment">
+<meta property="og:description" content="這兩天掉下來的題目，雖然不是掉在我身上，但貌似不錯玩就摸了一下。而原本要 servey 的對像是 IBM 的 visual-recognition，實際弄了之後發現現階段 ibm 的 api 能做的貌似不多，就順便看看先前玩過的 google cloude vision ，果然有刺激有進步，比三月的時候又強化了不少，用這個機會把心得一併寫一寫。">
+<meta property="og:image" content="http://napmas.github.io/2016/09/30/Visual-recognition-of-Google-IBM/1.jpg">
+<meta property="og:image" content="http://napmas.github.io/2016/09/30/Visual-recognition-of-Google-IBM/out.png">
+<meta property="og:image" content="http://napmas.github.io/2016/09/30/Visual-recognition-of-Google-IBM/4.jpg">
+<meta property="og:updated_time" content="2016-09-30T09:20:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Visual recognition of Google/IBM">
+<meta name="twitter:description" content="這兩天掉下來的題目，雖然不是掉在我身上，但貌似不錯玩就摸了一下。而原本要 servey 的對像是 IBM 的 visual-recognition，實際弄了之後發現現階段 ibm 的 api 能做的貌似不多，就順便看看先前玩過的 google cloude vision ，果然有刺激有進步，比三月的時候又強化了不少，用這個機會把心得一併寫一寫。">
+<meta name="twitter:image" content="http://napmas.github.io/2016/09/30/Visual-recognition-of-Google-IBM/1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="The Moment" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">The Moment</h1>
+  
+    <p class="lead blog-description">阿宅的筆記</p>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-Visual-recognition-of-Google-IBM" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Visual recognition of Google/IBM
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2016/09/30/Visual-recognition-of-Google-IBM/" class="article-date"><time datetime="2016-09-30T06:42:08.000Z" itemprop="datePublished">2016-09-30</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/visual-recognition/">visual-recognition</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>這兩天掉下來的題目，雖然不是掉在我身上，但貌似不錯玩就摸了一下。而原本要 servey 的對像是 IBM 的 visual-recognition，實際弄了之後發現現階段 ibm 的 api 能做的貌似不多，就順便看看先前玩過的 google cloude vision ，果然有刺激有進步，比三月的時候又強化了不少，用這個機會把心得一併寫一寫。</p>
+<a id="more"></a>
+<h2 id="IBM-Visual-Recognition"><a href="#IBM-Visual-Recognition" class="headerlink" title="IBM Visual Recognition"></a>IBM Visual Recognition</h2><hr>
+<h3 id="申請"><a href="#申請" class="headerlink" title="申請"></a>申請</h3><p>相較 google 的申請流程， IBM 的簡單很多</p>
+<ol>
+<li>到 <a href="http://console.ng.bluemix.net/" target="_blank" rel="external">http://console.ng.bluemix.net/</a> 建立帳號，登入後，它會請你選擇 region 及建立你的  Organization / Space 這樣就有一個 30 天免費的測試帳號了。30 天後會發生什麼事 ? 我也不知道 XD</li>
+<li>在 console 點選上面的 Dashboard , 選擇 「Use Service or API」，再選擇「Visual Recognition」，在說明頁什麼都不用更動，直接按 Create 紐就好。</li>
+<li>完成後會進入該 Visual Recogntion 的設定/說明主頁，左邊選單有個 Service Credentials 點了之後會顯示類似下面這樣的資訊，把其中的 api_key 抄下來就可以開始 coding 了<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"credentials"</span>: &#123;</div><div class="line">    <span class="attr">"url"</span>: <span class="string">"https://gateway-a.watsonplatform.net/visual-recognition/api"</span>,</div><div class="line">    <span class="attr">"note"</span>: <span class="string">"It may take up to 5 minutes for this key to become active. This is your previously active free apikey. If you want a different one, please wait 24 hours after unbinding the key and try again."</span>,</div><div class="line">    <span class="attr">"api_key"</span>: <span class="string">"你以為我會讓你看到我的 api key 嗎?"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure> 
+</li>
+</ol>
+<h3 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h3><p>IBM visualt recognition API 的說明在<a href="https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/" target="_blank" rel="external">這邊</a>，能玩的說真的不太多，以下簡單請近期最出名的兩位名人協助做 classify / detect face 的測試<br><img src="/2016/09/30/Visual-recognition-of-Google-IBM/1.jpg" alt="celebrities" title="celebrities"></p>
+<ul>
+<li>在專案目錄下執行 <code>npm init</code> 建立 package.json</li>
+<li>執行<code>npm install watson-developer-cloud --save</code>安裝必要的模組</li>
+<li>編輯以下測試程式 <figure class="highlight javascript"><figcaption><span>ibm_visual_recognition.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> watson = <span class="built_in">require</span>(<span class="string">"watson-developer-cloud"</span>);</div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> visual_recognition = watson.visual_recognition(&#123;</div><div class="line">    api_key: <span class="string">"你以為我會忘了這裡嗎 ?"</span>,</div><div class="line">    version_date: <span class="string">"2016-05-20"</span>,</div><div class="line">    version: <span class="string">"v3"</span></div><div class="line">&#125;);</div><div class="line"><span class="keyword">var</span> params = &#123;</div><div class="line">    images_file : fs.createReadStream(<span class="string">"./imgs/1.jpg"</span>)</div><div class="line">&#125;;</div><div class="line">visual_recognition.classify(params, <span class="function"><span class="keyword">function</span>(<span class="params">err, res</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (err)</div><div class="line">        <span class="built_in">console</span>.log( err );</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="built_in">console</span>.log( <span class="built_in">JSON</span>.stringify(res, <span class="literal">null</span>, <span class="number">2</span>));</div><div class="line">&#125;);</div><div class="line">visual_recognition.detectFaces( params, <span class="function"><span class="keyword">function</span> (<span class="params">err, res</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (err)</div><div class="line">        <span class="built_in">console</span>.log( err ) ;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="built_in">console</span>.log( <span class="built_in">JSON</span>.stringify(res, <span class="literal">null</span>, <span class="number">2</span>));</div><div class="line">&#125;);</div></pre></td></tr></table></figure></li>
+<li>執行<code>npm imb_visual_recogntion</code>, 結果如下 <figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"custom_classes"</span>: <span class="number">0</span>,</div><div class="line">  <span class="attr">"images"</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">"classifiers"</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="attr">"classes"</span>: [</div><div class="line">            &#123;</div><div class="line">              <span class="attr">"class"</span>: <span class="string">"person"</span>,</div><div class="line">              <span class="attr">"score"</span>: <span class="number">0.999888</span>,</div><div class="line">              <span class="attr">"type_hierarchy"</span>: <span class="string">"/people"</span></div><div class="line">            &#125;</div><div class="line">          ],</div><div class="line">          <span class="attr">"classifier_id"</span>: <span class="string">"default"</span>,</div><div class="line">          <span class="attr">"name"</span>: <span class="string">"default"</span></div><div class="line">        &#125;</div><div class="line">      ],</div><div class="line">      <span class="attr">"image"</span>: <span class="string">"1.jpg"</span></div><div class="line">    &#125;</div><div class="line">  ],</div><div class="line">  <span class="attr">"images_processed"</span>: <span class="number">1</span></div><div class="line">&#125;</div><div class="line">&#123;</div><div class="line">  <span class="attr">"images"</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">"faces"</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="attr">"age"</span>: &#123;</div><div class="line">            <span class="attr">"max"</span>: <span class="number">64</span>,</div><div class="line">            <span class="attr">"min"</span>: <span class="number">55</span>,</div><div class="line">            <span class="attr">"score"</span>: <span class="number">0.564336</span></div><div class="line">          &#125;,</div><div class="line">          <span class="attr">"face_location"</span>: &#123;</div><div class="line">            <span class="attr">"height"</span>: <span class="number">316</span>,</div><div class="line">            <span class="attr">"left"</span>: <span class="number">435</span>,</div><div class="line">            <span class="attr">"top"</span>: <span class="number">369</span>,</div><div class="line">            <span class="attr">"width"</span>: <span class="number">303</span></div><div class="line">          &#125;,</div><div class="line">          <span class="attr">"gender"</span>: &#123;</div><div class="line">            <span class="attr">"gender"</span>: <span class="string">"MALE"</span>,</div><div class="line">            <span class="attr">"score"</span>: <span class="number">0.99593</span></div><div class="line">          &#125;,</div><div class="line">          <span class="attr">"identity"</span>: &#123;</div><div class="line">            <span class="attr">"name"</span>: <span class="string">"Donald Trump"</span>,</div><div class="line">            <span class="attr">"score"</span>: <span class="number">0.817574</span>,</div><div class="line">            <span class="attr">"type_hierarchy"</span>: <span class="string">"/people/celebrities/donald trump"</span></div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      ],</div><div class="line">      <span class="attr">"image"</span>: <span class="string">"1.jpg"</span></div><div class="line">    &#125;</div><div class="line">  ],</div><div class="line">  <span class="attr">"images_processed"</span>: <span class="number">1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>說真的，結果有點讓人失望，像是人臉辨識的部份只認得川普 ? 不怕希<del>婆</del>拉蕊<strong>吉</strong>你歧視嗎 ?XD 這部份，google 真的要強一點。<br>想直接看測試結果的，可以到<a href="http://www.ibm.com/watson/developercloud/visual-recognition.html" target="_blank" rel="external">官網</a>，把圖片丟到 try it out 的框框裡玩玩。</p>
+<p>IBM 的visual recogntion 另外可以玩的的還有自己訓練分類資料，但我<del>要打電動</del>手頭的測試資料不足，就先不測了，來玩玩 google cloud vision api。</p>
+<p>p.s 官方有份 node application (on bluemix) 的原始碼在  <a href="https://github.com/watson-developer-cloud/visual-recognition-nodejs" target="_blank" rel="external">Github</a>，如果有使用 bluemix 經驗的，是份不錯的範本，但若是先前沒使用過就直接跳進來看或是執行，可能會對裡頭的 cf (cloud foundry)等名詞、bluemix的執行階層等感到霧殺殺，也會對 api_key 的生成/管理有點疑惑 XD (對，就是我)，建議像上面一樣由簡單的 bluemix api 呼叫開始，有點概念後，再建 web/mobile application。 </p>
+<h2 id="Google-Cloud-Vision-API"><a href="#Google-Cloud-Vision-API" class="headerlink" title="Google Cloud Vision API"></a>Google Cloud Vision API</h2><hr>
+<h3 id="申請-1"><a href="#申請-1" class="headerlink" title="申請"></a>申請</h3><p>講到 google cloud api 的申請天就要黑一邊，很多測試階段必要的動作都得做完(eg, 帳單設定)，UX的設計也常讓人找不到東西在那邊 = =<br>以下簡單摘要申請的流程</p>
+<ol>
+<li>申請 google 帳號。</li>
+<li>到 <a href="https://console.developers.google.com/project" target="_blank" rel="external">Google Console API</a> 申請一個(測試)專案，在專案名稱下方會有個「專案 ID」，先記下來，之後寫 code 的時候會用到，建立完成後頁面會自動跳到該專案的資料庫設定，這個時候可以選擇要啟用的 google api , 我們要測試的 vision api 在第一類的 Google Cloud API 裡的最後一個，要點開更多才看得到，也可以直接在「搜群所有 API 」中直接輸入 vision。</li>
+<li>點選 Google Cloud Vision API 後，在該 API 說明的上方有個「啟用」，點它。</li>
+<li>畫面上會提示需要建立憑証才能使用這個 API，請乖乖的點選「前往憑証」。</li>
+<li>憑証類型請選擇 Google Cloud Vision API，然後點選「我需要哪些憑証?」(乾，我怎麼會知道 = = )，然後他會跟你說你的API 金鑰，然後點完成。</li>
+<li>這時候會回到專案的憑證管理主頁，畫面上多了一個「建立憑證」按紐，依在 IT 打滾了十幾年的經驗，接下來應該要按它吧 ??? 按按看 (這段的說明在另一個遙遠的說明頁… <a href="https://googlecloudplatform.github.io/google-cloud-node/#/docs/vision/0.3.0/guides/authentication" target="_blank" rel="external">https://googlecloudplatform.github.io/google-cloud-node/#/docs/vision/0.3.0/guides/authentication</a> = = )，下拉選單中選「服務帳戶金鑰(Service Account)」。</li>
+<li>建立服務帳戶金鑰頁面中，服務帳戶類型請選擇「App Engine Default Service Account」，金鑰類型似乎隨便，我是選JSON，最後點選建立，它會讓你下載一個金鑰檔，請好好保管，之後程式執行時也會用到。</li>
+</ol>
+<p>如果沒有意外的話，到這邊<del>你的程式應該都寫完了</del> vision api 的使用設定算告一個段落，有夠煩，G 社你跟IBM學學嘛 !!</p>
+<p>p.s 在啟用 API 前， G 社會先檢查你是不是<del>有錢人</del>有合法付費設定，沒有的話會直接跳到帳單設定部份，乖乖繳<del>保護費</del>設定就是了。</p>
+<h3 id="測試-1"><a href="#測試-1" class="headerlink" title="測試"></a>測試</h3><p>Google vsion api 的(Node 版本)說明頁在<a href="https://googlecloudplatform.github.io/google-cloud-node/#/docs/vision/0.3.0/vision" target="_blank" rel="external">這邊</a> ，以下是簡單的執行範例<br>測試資料的部份依然請出近期世上最紅的兩位名人協助。</p>
+<ul>
+<li>在專案目錄下執行 <code>npm init</code> 建立 package.json</li>
+<li>執行<code>npm install --save google-cloud</code> 安裝google cloud 的 node js module  (原則上不用全裝，但我執行的時候碰到找不到的錯誤，全裝就解決了)</li>
+<li>Happy coding，以下是官方的範例，可以直接在<a href="https://github.com/GoogleCloudPlatform/nodejs-docs-samples/blob/master/vision/faceDetection.js" target="_blank" rel="external">Github</a><del>抄襲</del>下載，但是用了在 Mac 上很難裝的 Canvas 模組，後果自負 XD XD <figure class="highlight javascript"><figcaption><span>google_visual_recognition.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gcloud = <span class="built_in">require</span>(<span class="string">'google-cloud'</span>)(&#123;</div><div class="line">    projectId: <span class="string">"&lt;your_project_id&gt;"</span>,</div><div class="line">    keyFilename: <span class="string">"&lt;your_credentials_key_file&gt;"</span></div><div class="line">&#125;);</div><div class="line"><span class="keyword">var</span> vision = gcloud.vision();</div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Uses the Vision API to detect faces in the given file.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">detectFaces</span>(<span class="params">inputFile, callback</span>) </span>&#123;</div><div class="line">    <span class="comment">// Make a call to the Vision API to detect the faces</span></div><div class="line">    vision.detectFaces(inputFile, <span class="function"><span class="keyword">function</span> (<span class="params">err, faces</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (err) &#123;</div><div class="line">            <span class="keyword">return</span> callback(err);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">var</span> numFaces = faces.length;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Found '</span> + numFaces + (numFaces === <span class="number">1</span> ? <span class="string">' face'</span> : <span class="string">' faces'</span>));</div><div class="line">        callback(<span class="literal">null</span>, faces);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Draws a polygon around the faces, then saves to outputFile.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">highlightFaces</span>(<span class="params">inputFile, faces, outputFile, Canvas, callback</span>) </span>&#123;</div><div class="line">    fs.readFile(inputFile, <span class="function"><span class="keyword">function</span> (<span class="params">err, image</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (err) &#123;</div><div class="line">            <span class="keyword">return</span> callback(err);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">var</span> Image = Canvas.Image;</div><div class="line">        <span class="comment">// Open the original image into a canvas</span></div><div class="line">        <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</div><div class="line">        img.src = image;</div><div class="line">        <span class="keyword">var</span> canvas = <span class="keyword">new</span> Canvas(img.width, img.height);</div><div class="line">        <span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);</div><div class="line">        context.drawImage(img, <span class="number">0</span>, <span class="number">0</span>, img.width, img.height);</div><div class="line">        <span class="comment">// Now draw boxes around all the faces</span></div><div class="line">        context.strokeStyle = <span class="string">'rgba(0,255,0,0.8)'</span>;</div><div class="line">        context.lineWidth = <span class="string">'5'</span>;</div><div class="line">        faces.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">face</span>) </span>&#123;</div><div class="line">            context.beginPath();</div><div class="line">            face.bounds.face.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">bounds</span>) </span>&#123;</div><div class="line">                context.lineTo(bounds.x, bounds.y);</div><div class="line">            &#125;);</div><div class="line">            context.lineTo(face.bounds.face[<span class="number">0</span>].x, face.bounds.face[<span class="number">0</span>].y);</div><div class="line">            context.stroke();</div><div class="line">        &#125;);</div><div class="line">        <span class="comment">// Write the result to a file</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Writing to file '</span> + outputFile);</div><div class="line">        <span class="keyword">var</span> writeStream = fs.createWriteStream(outputFile);</div><div class="line">        <span class="keyword">var</span> pngStream = canvas.pngStream();</div><div class="line">        pngStream.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">chunk</span>) </span>&#123;</div><div class="line">            writeStream.write(chunk);</div><div class="line">        &#125;);</div><div class="line">        pngStream.on(<span class="string">'error'</span>, <span class="built_in">console</span>.log);</div><div class="line">        pngStream.on(<span class="string">'end'</span>, callback);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"><span class="comment">// Run the example</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params">inputFile, outputFile, callback</span>) </span>&#123;</div><div class="line">    outputFile = outputFile || <span class="string">'out.png'</span>;   </div><div class="line">    detectFaces(inputFile, <span class="function"><span class="keyword">function</span> (<span class="params">err, faces</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (err) &#123;</div><div class="line">            <span class="keyword">return</span> callback(err);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Highlighting...'</span>);</div><div class="line">        highlightFaces(inputFile, faces, outputFile, Canvas, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (err) &#123;</div><div class="line">                <span class="keyword">return</span> callback(err);</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'Finished!'</span>);</div><div class="line">            callback(<span class="literal">null</span>, faces);</div><div class="line">        &#125;);        </div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line">exports.main = main;</div><div class="line"><span class="keyword">if</span> (<span class="built_in">module</span> === <span class="built_in">require</span>.main) &#123;</div><div class="line">    <span class="keyword">if</span> (process.argv.length &lt; <span class="number">3</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Usage: node google_visual_recognition &lt;inputFile&gt; [outputFile]'</span>);</div><div class="line">        process.exit(<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> inputFile = process.argv[<span class="number">2</span>];</div><div class="line">    <span class="keyword">var</span> outputFile = process.argv[<span class="number">3</span>];</div><div class="line">    exports.main(inputFile, outputFile, <span class="built_in">require</span>(<span class="string">'canvas'</span>), <span class="built_in">console</span>.log);</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+<li>執行<code>node google_visual_recognition test_img.jpg</code> 就可以得到結果如下<img src="/2016/09/30/Visual-recognition-of-Google-IBM/out.png" alt="Result" title="Result"></li>
+<li><p>如果把 detectFaces 偵測出來的結果 faces[0] (這是川普的臉 XD) 印出來看，會長得像這樣</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">  angles: &#123; pan: -25.345671, roll: -15.692808, tilt: -0.48272857 &#125;,</div><div class="line">  bounds:</div><div class="line">   &#123; head: [ [Object], [Object], [Object], [Object] ],</div><div class="line">     face: [ [Object], [Object], [Object], [Object] ] &#125;,</div><div class="line">  features:</div><div class="line">   &#123; confidence: 50.734334999999994,</div><div class="line">     chin: &#123; center: [Object], left: [Object], right: [Object] &#125;,</div><div class="line">     ears: &#123; left: [Object], right: [Object] &#125;,</div><div class="line">     eyebrows: &#123; left: [Object], right: [Object] &#125;,</div><div class="line">     eyes: &#123; left: [Object], right: [Object] &#125;,</div><div class="line">     forehead: &#123; x: 541.8797, y: 445.76398, z: -57.465015 &#125;,</div><div class="line">     lips: &#123; bottom: [Object], top: [Object] &#125;,</div><div class="line">     mouth: &#123; center: [Object], left: [Object], right: [Object] &#125;,</div><div class="line">     nose: &#123; bottom: [Object], tip: [Object], top: [Object] &#125; &#125;,</div><div class="line">  confidence: 97.719109,</div><div class="line">  blurry: false,</div><div class="line">  dark: false,</div><div class="line">  happy: true,</div><div class="line">  hat: false,</div><div class="line">  mad: false,</div><div class="line">  sad: false,</div><div class="line">  surprised: false </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中有一段 features 屬性描述了這張臉的特徵，雖然只有位置(x,y,z)的資訊，但至少比 IBM 結果多一些可以玩的資訊，</p>
+</li>
+<li><p>完整的 vision API 一共有 faces, labels, landmarks, logos, properties, safeSearch, text 七大功能，各有獨立的 API 可以呼叫，要是想要<del>包套</del>一次執行多項偵測，也有個 detect 的 API 可以用，以下是一個包套的範例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gcloud = <span class="built_in">require</span>(<span class="string">'google-cloud'</span>)(&#123;</div><div class="line">    projectId: <span class="string">"&lt;your_project_id&gt;"</span>,</div><div class="line">    keyFilename: <span class="string">"&lt;your_credentials_key_file&gt;"</span></div><div class="line">&#125;);</div><div class="line"><span class="keyword">var</span> vision = gcloud.vision();</div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Use the detect api of vision</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">detect</span>(<span class="params">inputfile, callback </span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> types = [<span class="string">"faces"</span>,<span class="string">"labels"</span>, <span class="string">"landmarks"</span>, <span class="string">"logos"</span>, <span class="string">"properties"</span>, <span class="string">"safeSearch"</span>, <span class="string">"text"</span>];</div><div class="line">    <span class="keyword">var</span> opts = &#123;</div><div class="line">        types: types,</div><div class="line">        maxResults: <span class="number">20</span>,</div><div class="line">        verbose : <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line">    vision.detect(inputfile, opts, <span class="function"><span class="keyword">function</span>(<span class="params">err, detections, apiResponse</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (err ) &#123;</div><div class="line">            <span class="keyword">return</span> callback (err);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Something is over there !!"</span>);</div><div class="line">        callback (<span class="literal">null</span>, detections);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"><span class="comment">// Run the example</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params">inputFile, outputFile, callback</span>) </span>&#123;</div><div class="line">    outputFile = outputFile || <span class="string">'out.png'</span>;</div><div class="line">    detect( inputFile, <span class="function"><span class="keyword">function</span>(<span class="params">err,detections</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (err)&#123;</div><div class="line">            <span class="keyword">return</span> callback( err ) ;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Detections : "</span> );</div><div class="line">        <span class="built_in">console</span>.log( detections );</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line">exports.main = main;</div><div class="line"><span class="keyword">if</span> (<span class="built_in">module</span> === <span class="built_in">require</span>.main) &#123;</div><div class="line">    <span class="keyword">if</span> (process.argv.length &lt; <span class="number">3</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Usage: node faceDetection &lt;inputFile&gt; [outputFile]'</span>);</div><div class="line">        process.exit(<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> inputFile = process.argv[<span class="number">2</span>];</div><div class="line">    <span class="keyword">var</span> outputFile = process.argv[<span class="number">3</span>];</div><div class="line">    exports.main(inputFile, outputFile, <span class="built_in">console</span>.log);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>執行輸出結果如下 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">&#123; faces:</div><div class="line">   [ &#123; angles: [<span class="built_in">Object</span>],</div><div class="line">       bounds: [<span class="built_in">Object</span>],</div><div class="line">       features: [<span class="built_in">Object</span>],</div><div class="line">       confidence: <span class="number">97.719109</span>,</div><div class="line">       blurry: <span class="literal">false</span>,</div><div class="line">       dark: <span class="literal">false</span>,</div><div class="line">       happy: <span class="literal">true</span>,</div><div class="line">       hat: <span class="literal">false</span>,</div><div class="line">       mad: <span class="literal">false</span>,</div><div class="line">       sad: <span class="literal">false</span>,</div><div class="line">       surprised: <span class="literal">false</span> &#125;,</div><div class="line">     &#123; angles: [<span class="built_in">Object</span>],</div><div class="line">       bounds: [<span class="built_in">Object</span>],</div><div class="line">       features: [<span class="built_in">Object</span>],</div><div class="line">       confidence: <span class="number">97.595638</span>,</div><div class="line">       blurry: <span class="literal">false</span>,</div><div class="line">       dark: <span class="literal">false</span>,</div><div class="line">       happy: <span class="literal">true</span>,</div><div class="line">       hat: <span class="literal">false</span>,</div><div class="line">       mad: <span class="literal">false</span>,</div><div class="line">       sad: <span class="literal">false</span>,</div><div class="line">       surprised: <span class="literal">false</span> &#125; ],</div><div class="line">  labels:</div><div class="line">   [ &#123; desc: <span class="string">'person'</span>, mid: <span class="string">'/m/01g317'</span>, score: <span class="number">90.005928</span> &#125;,</div><div class="line">     &#123; desc: <span class="string">'speech'</span>, mid: <span class="string">'/m/09x0r'</span>, score: <span class="number">77.268296</span> &#125;,</div><div class="line">     &#123; desc: <span class="string">'award'</span>, mid: <span class="string">'/m/02w3hl'</span>, score: <span class="number">57.747811000000006</span> &#125;,</div><div class="line">     &#123; desc: <span class="string">'news conference'</span>, mid: <span class="string">'/m/01s8fx'</span>, score: <span class="number">51.559496</span> &#125; ],</div><div class="line">  landmarks: [],</div><div class="line">  logos: [],</div><div class="line">  properties:</div><div class="line">   &#123; colors:</div><div class="line">      [ <span class="string">'8194da'</span>,</div><div class="line">        <span class="string">'95121a'</span>,</div><div class="line">        <span class="string">'610b14'</span>,</div><div class="line">        <span class="string">'151214'</span>,</div><div class="line">        <span class="string">'20316b'</span>,</div><div class="line">        <span class="string">'718ce0'</span>,</div><div class="line">        <span class="string">'a9b6f8'</span>,</div><div class="line">        <span class="string">'6d80c8'</span>,</div><div class="line">        <span class="string">'800b14'</span>,</div><div class="line">        <span class="string">'6782d4'</span> ] &#125;,</div><div class="line">  safeSearch: &#123; adult: <span class="literal">false</span>, spoof: <span class="literal">false</span>, medical: <span class="literal">false</span>, violence: <span class="literal">false</span> &#125;,</div><div class="line">  text: [ <span class="string">'we trutkat\n'</span>, <span class="string">'we'</span>, <span class="string">'trutkat'</span> ],</div><div class="line">  errors: [] &#125;</div></pre></td></tr></table></figure>
+<p>faces 的部份就如同第一個範例的輸出結果， label 的結果有點像分類，或是概括的圖片描述，text 比先前三月測試的時候似乎進步不少，至少會出現完整的詞，而非英文字母讓你自己拼了， label 的部份這個例子看起來有點少，但若是丟另一張圖...WOW… Amazing ! 我說結果 !! </p>
+<img src="/2016/09/30/Visual-recognition-of-Google-IBM/4.jpg" alt="4.jpg" title=""> 
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">  labels:</div><div class="line">   [ &#123; desc: 'hair', mid: '/m/03q69', score: 96.067119 &#125;,</div><div class="line">     &#123; desc: 'clothing', mid: '/m/09j2d', score: 92.81424299999999 &#125;,</div><div class="line">     &#123; desc: 'gravure idol', mid: '/m/03wm22', score: 88.906205 &#125;,</div><div class="line">     &#123; desc: 'black hair', mid: '/m/0fc1fy', score: 88.480681 &#125;,</div><div class="line">     &#123; desc: 'undergarment', mid: '/m/09j1x', score: 84.723574 &#125;,</div><div class="line">     &#123; desc: 'brassiere', mid: '/m/01gmv2', score: 83.169478 &#125;,</div><div class="line">     &#123; desc: 'hairstyle', mid: '/m/0ds4x', score: 77.820361 &#125;,</div><div class="line">     &#123; desc: 'lingerie', mid: '/m/09hyx', score: 77.588242 &#125;,</div><div class="line">     &#123; desc: 'long hair', mid: '/m/02pd__z', score: 77.085322 &#125;,</div><div class="line">     &#123; desc: 'leg', mid: '/m/035r7c', score: 75.916624 &#125;,</div><div class="line">     &#123; desc: 'brown hair',</div><div class="line">       mid: '/m/02ksmb',</div><div class="line">       score: 74.79592000000001 &#125;,</div><div class="line">     &#123; desc: 'thigh', mid: '/m/01j04m', score: 71.753 &#125;,</div><div class="line">     &#123; desc: 'supermodel', mid: '/m/0d2ww', score: 71.078926 &#125;,</div><div class="line">     &#123; desc: 'active undergarment',</div><div class="line">       mid: '/m/0hgp2z7',</div><div class="line">       score: 65.125793 &#125;,</div><div class="line">     &#123; desc: 'finger', mid: '/m/09cx8', score: 65.06078199999999 &#125;,</div><div class="line">     &#123; desc: 'photo shoot',</div><div class="line">       mid: '/m/02qbl1m',</div><div class="line">       score: 61.876070000000006 &#125;,</div><div class="line">     &#123; desc: 'model', mid: '/m/0d1pc', score: 60.258013 &#125;,</div><div class="line">     &#123; desc: 'hand', mid: '/m/0k65p', score: 56.769645000000004 &#125;,</div><div class="line">     &#123; desc: 'human body', mid: '/m/02p0tk3', score: 54.555672 &#125;,</div><div class="line">     &#123; desc: 'abdomen', mid: '/m/08y7p8', score: 53.463352 &#125; ],</div><div class="line">     ...</div></pre></td></tr></table></figure>
+<ul>
+<li><p>detect 方法中的 option 在文件中沒有明說，請自行翻<a href="https://github.com/GoogleCloudPlatform/google-cloud-node/blob/vision-0.3.0/packages/vision/src/index.js#L267" target="_blank" rel="external">原始碼</a>中 158~172 行的部份。</p>
+</li>
+<li><p>如果不想寫程式也想測試這些東西，也可以，直接到<a href="https://cloud.google.com/vision/" target="_blank" rel="external">官網首頁</a>，有個 Try the API的輸入框，把圖丟進去就可以看到這些結果了……. … … </p>
+</li>
+</ul>
+<p>總結來說，google 除了一開始申請很麻煩外，在執行結果表現的比較好，後續比較有應用發揮的機會，IBM 的既然能識別出名人，那應該也有人臉特徵的功能，就看相關的 API 什麼時候更新或是提供了。</p>
+<p>只是啊… 測試的時候有一些些免費的額度不會有感覺，但上線系統連續大量的圖片辨識，這個開銷…. 只能說，小時候不好好發展技術，這公司最後只能仰人鼻息也不是太意外的結果 (嘆</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://napmas.github.io/2016/09/30/Visual-recognition-of-Google-IBM/" data-id="citpekpjc0006uhth6ra379nq" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/visual-recognition/">visual-recognition</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2016/09/10/Creating-Flow-in-Node-Red-3/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Creating Flow in Node Red - 3</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/">node-red</a><span class="sidebar-module-list-count">3</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/flow/">flow</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node-red/">node-red</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-red/" style="font-size: 20px;">node-red</a> <a href="/tags/visual-recognition/" style="font-size: 10px;">visual-recognition</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">九月 2016</a><span class="sidebar-module-list-count">6</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/09/30/Visual-recognition-of-Google-IBM/">Visual recognition of Google/IBM</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/10/Creating-Flow-in-Node-Red-3/">Creating Flow in Node Red - 3</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/09/Creating-Flow-In-Node-Red-2/">Creating Flow In Node Red - 2</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/09/Create-Flow-In-Node-Red-1/">Creating Flow In Node Red - 1</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/02/SonarQube-Quick-Setup/">SonarQube Quick Setup</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Yu-Wen Huang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>
