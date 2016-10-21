@@ -6,20 +6,23 @@
   <title>Hexo quick setup | The Moment</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="什麼是 Hexo？
-以下引自官網 :Hexo 是一個快速、簡單且強大的網誌框架。Hexo 使用 Markdown（或其他渲染引擎）解析您的文章，並在幾秒鐘內，透過漂亮的主題產生靜態檔案。
+以下引自官網 :
+Hexo 是一個快速、簡單且強大的網誌框架。Hexo 使用 Markdown（或其他渲染引擎）解析您的文章，並在幾秒鐘內，透過漂亮的主題產生靜態檔案。
 雖然過程真的很簡明，但年紀大了記不住事，步驟加減記錄">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo quick setup">
 <meta property="og:url" content="http://napmas.github.io/2016/09/02/HexoQuickSetup/index.html">
 <meta property="og:site_name" content="The Moment">
 <meta property="og:description" content="什麼是 Hexo？
-以下引自官網 :Hexo 是一個快速、簡單且強大的網誌框架。Hexo 使用 Markdown（或其他渲染引擎）解析您的文章，並在幾秒鐘內，透過漂亮的主題產生靜態檔案。
+以下引自官網 :
+Hexo 是一個快速、簡單且強大的網誌框架。Hexo 使用 Markdown（或其他渲染引擎）解析您的文章，並在幾秒鐘內，透過漂亮的主題產生靜態檔案。
 雖然過程真的很簡明，但年紀大了記不住事，步驟加減記錄">
 <meta property="og:updated_time" content="2016-09-02T08:26:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo quick setup">
 <meta name="twitter:description" content="什麼是 Hexo？
-以下引自官網 :Hexo 是一個快速、簡單且強大的網誌框架。Hexo 使用 Markdown（或其他渲染引擎）解析您的文章，並在幾秒鐘內，透過漂亮的主題產生靜態檔案。
+以下引自官網 :
+Hexo 是一個快速、簡單且強大的網誌框架。Hexo 使用 Markdown（或其他渲染引擎）解析您的文章，並在幾秒鐘內，透過漂亮的主題產生靜態檔案。
 雖然過程真的很簡明，但年紀大了記不住事，步驟加減記錄">
   
     <link rel="alternate" href="/atom.xml" title="The Moment" type="application/atom+xml">
@@ -112,27 +115,46 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="什麼是-Hexo？"><a href="#什麼是-Hexo？" class="headerlink" title="什麼是 Hexo？"></a>什麼是 Hexo？</h2><hr>
-<p>以下引自官網 :<br>Hexo 是一個快速、簡單且強大的網誌框架。Hexo 使用 Markdown（或其他渲染引擎）解析您的文章，並在幾秒鐘內，透過漂亮的主題產生靜態檔案。</p>
-<p>雖然過程真的很簡明，但年紀大了記不住事，步驟加減記錄<br><a id="more"></a></p>
+<p>以下引自官網 :
+Hexo 是一個快速、簡單且強大的網誌框架。Hexo 使用 Markdown（或其他渲染引擎）解析您的文章，並在幾秒鐘內，透過漂亮的主題產生靜態檔案。</p>
+<p>雖然過程真的很簡明，但年紀大了記不住事，步驟加減記錄
+<a id="more"></a></p>
 <h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><hr>
-<p>在有已安裝好 Node 及 git 的情況下， Hexo 的安裝及設定是很簡單的，若本機上尚未安裝 Node / git ，請參考官網的設定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-cli -g</div><div class="line">$ mkdir ~/Documents/blog</div><div class="line">$ hexo init ~/Documents/blog</div><div class="line">$ cd ~/Documents/blog</div><div class="line">$ npm install</div></pre></td></tr></table></figure></p>
+<p>在有已安裝好 Node 及 git 的情況下， Hexo 的安裝及設定是很簡單的，若本機上尚未安裝 Node / git ，請參考官網的設定
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-cli -g</div><div class="line">$ mkdir ~/Documents/blog</div><div class="line">$ hexo init ~/Documents/blog</div><div class="line">$ cd ~/Documents/blog</div><div class="line">$ npm install</div></pre></td></tr></table></figure></p>
 <p>打完，收工。</p>
-<p>它內建簡單的 web server，具 auto reload 的功能，作為預覽文件還不錯用，開啟方式如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure></p>
+<p>它內建簡單的 web server，具 auto reload 的功能，作為預覽文件還不錯用，開啟方式如下
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure></p>
 <p>若啟動過程沒有錯誤，透過瀏覽器開啟 <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 就可以看到基本樣貌了</p>
 <h2 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h2><hr>
 <p>設定檔的詳細說明請參考  <a href="https://hexo.io/zh-tw/docs/configuration.html" target="_blank" rel="external">https://hexo.io/zh-tw/docs/configuration.html</a></p>
 <p>以下是簡單的範例 (未列出的部份是不想管的)</p>
 <blockquote>
-<p># 基本設定<br>title: The Moment<br>subtitle: 阿宅的筆記<br>description: 溢出的腦漿暫存區<br>author: Yu-Wen Huang<br>language: zh-tw<br>timezone: Asia/Taipei</p>
-<p># 未來網頁放置於 github.io 上<br>url: <a href="http://napmas.github.io">http://napmas.github.io</a></p>
-<p># 中英文間自動加入空白<br>auto_spacing: true</p>
-<p># Theme<br>theme: bootstrap-blog</p>
-<p># 佈置設定<br>deploy:<br>  type: git<br>  repo: git@github.com:napmas/napmas.github.io.git<br>  branch: master</p>
+<p># 基本設定
+title: The Moment
+subtitle: 阿宅的筆記
+description: 溢出的腦漿暫存區
+author: Yu-Wen Huang
+language: zh-tw
+timezone: Asia/Taipei</p>
+<p># 未來網頁放置於 github.io 上
+url: <a href="http://napmas.github.io">http://napmas.github.io</a></p>
+<p># 中英文間自動加入空白
+auto_spacing: true</p>
+<p># Theme 
+theme: bootstrap-blog</p>
+<p># 佈置設定
+deploy:
+  type: git
+  repo: git@github.com:napmas/napmas.github.io.git
+  branch: master</p>
 </blockquote>
 <p>改完設定檔記得重啟 server 才會生效。 </p>
 <h2 id="網站樣式-主題"><a href="#網站樣式-主題" class="headerlink" title="網站樣式/主題"></a>網站樣式/主題</h2><hr>
-<p>都要當阿宅了，就不打算下來改 CSS 了，<br>在 <a href="https://hexo.io/themes/" target="_blank" rel="external">https://hexo.io/themes/</a> 挑一個喜歡的， git clone 到 ~/Documents/blog/themes 下，依網址上的指示安裝必要的檔案，然後將 _config.yml 的 theme 參數指定為你要的theme的目錄名稱即可</p>
-<p>p.s 預設為 landscape<br>p.s 多數的 theme 的 github 頁面有含安裝的詳細說明</p>
+<p>都要當阿宅了，就不打算下來改 CSS 了，
+在 <a href="https://hexo.io/themes/" target="_blank" rel="external">https://hexo.io/themes/</a> 挑一個喜歡的， git clone 到 ~/Documents/blog/themes 下，依網址上的指示安裝必要的檔案，然後將 _config.yml 的 theme 參數指定為你要的theme的目錄名稱即可</p>
+<p>p.s 預設為 landscape
+p.s 多數的 theme 的 github 頁面有含安裝的詳細說明</p>
 <h2 id="佈署"><a href="#佈署" class="headerlink" title="佈署"></a>佈署</h2><hr>
 <p>由於這個網站主要想放技術類的筆記，放到 github 似乎是一個好選擇。</p>
 <p>預先準備</p>
@@ -160,7 +182,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://napmas.github.io/2016/09/02/HexoQuickSetup/" data-id="ciui1i3xx00055jthdoj4tsuu" class="article-share-link">
+      <a data-url="http://napmas.github.io/2016/09/02/HexoQuickSetup/" data-id="ciujm6epq000gqfthj804o3w6" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -197,7 +219,7 @@
   
   <div class="sidebar-module">
     <h4>Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/">node-red</a><span class="sidebar-module-list-count">3</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/flow/">flow</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">2</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/bot/">bot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/">node-red</a><span class="sidebar-module-list-count">3</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/flow/">flow</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">2</span></li></ul>
   </div>
 
 
@@ -205,7 +227,7 @@
   
   <div class="sidebar-module">
     <h4>Tags</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node-red/">node-red</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition-ibm-google/">visual-recognition, ibm, google</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node-red/">node-red</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/slack-bot/">slack, bot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition-ibm-google/">visual-recognition, ibm, google</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -214,7 +236,7 @@
   <div class="sidebar-module">
     <h4>Tag Cloud</h4>
     <p class="tagcloud">
-      <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-red/" style="font-size: 20px;">node-red</a> <a href="/tags/visual-recognition/" style="font-size: 10px;">visual-recognition</a> <a href="/tags/visual-recognition-ibm-google/" style="font-size: 10px;">visual-recognition, ibm, google</a>
+      <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-red/" style="font-size: 20px;">node-red</a> <a href="/tags/slack-bot/" style="font-size: 10px;">slack, bot</a> <a href="/tags/visual-recognition/" style="font-size: 10px;">visual-recognition</a> <a href="/tags/visual-recognition-ibm-google/" style="font-size: 10px;">visual-recognition, ibm, google</a>
     </p>
   </div>
 
@@ -222,7 +244,7 @@
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">九月 2016</a><span class="sidebar-module-list-count">6</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">九月 2016</a><span class="sidebar-module-list-count">6</span></li></ul>
   </div>
 
 
@@ -231,6 +253,10 @@
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/10/21/Create-a-slack-bot/">Create a slack bot</a>
+        </li>
       
         <li>
           <a href="/2016/10/20/Custom-classifier-of-IBM-visual-recogintion/">Custom classifier of IBM visual recogintion</a>
@@ -246,10 +272,6 @@
       
         <li>
           <a href="/2016/09/09/Creating-Flow-In-Node-Red-2/">Creating Flow In Node Red - 2</a>
-        </li>
-      
-        <li>
-          <a href="/2016/09/09/Create-Flow-In-Node-Red-1/">Creating Flow In Node Red - 1</a>
         </li>
       
     </ul>

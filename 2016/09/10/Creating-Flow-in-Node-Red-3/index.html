@@ -157,13 +157,17 @@
 </li>
 </ul>
 <h2 id="Creating-flow"><a href="#Creating-flow" class="headerlink" title="Creating flow"></a>Creating flow</h2><hr>
-<p>好了，現在需要的 node 都有了，接著只要把流程串好就好了，長得像下圖這樣<br><img src="/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3.png" alt="flow-3.png" title=""></p>
+<p>好了，現在需要的 node 都有了，接著只要把流程串好就好了，長得像下圖這樣 
+<img src="/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3.png" alt="flow-3.png" title=""></p>
 <p>很直覺，對吧 ?! </p>
 <p>不，一點也不，為什麼在 notifier 前要加上 兩秒的 delay ?!!! </p>
 <p>熟悉 javascript 開發的朋友應該猜得到，又是非同步的問題，在上面的流程中，pokemon node 去抓 pokemon 資料<strong>的同時</strong>，流程已經走到 notifier 了，這個時候資料還沒準備好，所以值都會是空的，用寫程式的方法可以 callback 方式處理，但在<strong>流程圖</strong>中，一時想不到什麼好解法(再弄一個 event trigger 的 flow 接資料  ? XD)，就硬塞一個 delay node 假裝沒這件事，實際上，並沒有解決這個問題，但至少至少，可以看到期望的結果了。</p>
-<p>其中 Inject Node 設定如下圖，除了一開始執行的選項外，還設定每隔十秒重新執行一次<br><img src="/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3-inject.png" alt="Inject Node Setting" title="Inject Node Setting"></p>
-<p>Pokemon Node 的設定如下圖，程式中需要的參數都在這邊設定，再帶進 pokemon.js 裡<br><img src="/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3-pokemon.png" alt="Pokemon Node Setting" title="Pokemon Node Setting"></p>
-<p>Deploy 看看吧 !!! 萬歲，我身邊有一隻波波可以抓 orz<br><img src="/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3-notification.png" alt="Mac Notification Result" title="Mac Notification Result"></p>
+<p>其中 Inject Node 設定如下圖，除了一開始執行的選項外，還設定每隔十秒重新執行一次 
+<img src="/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3-inject.png" alt="Inject Node Setting" title="Inject Node Setting"></p>
+<p>Pokemon Node 的設定如下圖，程式中需要的參數都在這邊設定，再帶進 pokemon.js 裡
+<img src="/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3-pokemon.png" alt="Pokemon Node Setting" title="Pokemon Node Setting"></p>
+<p>Deploy 看看吧 !!! 萬歲，我身邊有一隻波波可以抓 orz
+<img src="/2016/09/10/Creating-Flow-in-Node-Red-3/flow-3-notification.png" alt="Mac Notification Result" title="Mac Notification Result"></p>
 <p>這樣搞完後發現，好像也不那麼像 IoT 的流程，加上那個不同步的問題，嗯嗯… Node Red 有 MQTT 的 Input/Output Node ，晚一點用它來試試看好了@@</p>
 <p>另一方面，在商業邏輯複雜到一定程度後， Node Red 內建的 Node 很明顯的無法全部支援到，勢必要自己寫 Node, 但這樣一來… 我幹麻不直接都在程式裡幹完就好了 XD XD 若說真要省事，就要有人家寫好的 Node library 支援，只是很可惜的，小公司為了十萬塊把捧著 device connecting node 上門找合作的 A 公司趕走惹，未來似乎只能科科，科科 (嘆</p>
 
@@ -176,7 +180,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://napmas.github.io/2016/09/10/Creating-Flow-in-Node-Red-3/" data-id="ciui1i3xn00045jthvre0k9tw" class="article-share-link">
+      <a data-url="http://napmas.github.io/2016/09/10/Creating-Flow-in-Node-Red-3/" data-id="ciujm6ep10005qfthrb1q3i1s" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -220,7 +224,7 @@
   
   <div class="sidebar-module">
     <h4>Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/">node-red</a><span class="sidebar-module-list-count">3</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/flow/">flow</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">2</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/bot/">bot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/">node-red</a><span class="sidebar-module-list-count">3</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/flow/">flow</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">2</span></li></ul>
   </div>
 
 
@@ -228,7 +232,7 @@
   
   <div class="sidebar-module">
     <h4>Tags</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node-red/">node-red</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition-ibm-google/">visual-recognition, ibm, google</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node-red/">node-red</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/slack-bot/">slack, bot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition-ibm-google/">visual-recognition, ibm, google</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -237,7 +241,7 @@
   <div class="sidebar-module">
     <h4>Tag Cloud</h4>
     <p class="tagcloud">
-      <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-red/" style="font-size: 20px;">node-red</a> <a href="/tags/visual-recognition/" style="font-size: 10px;">visual-recognition</a> <a href="/tags/visual-recognition-ibm-google/" style="font-size: 10px;">visual-recognition, ibm, google</a>
+      <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-red/" style="font-size: 20px;">node-red</a> <a href="/tags/slack-bot/" style="font-size: 10px;">slack, bot</a> <a href="/tags/visual-recognition/" style="font-size: 10px;">visual-recognition</a> <a href="/tags/visual-recognition-ibm-google/" style="font-size: 10px;">visual-recognition, ibm, google</a>
     </p>
   </div>
 
@@ -245,7 +249,7 @@
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">九月 2016</a><span class="sidebar-module-list-count">6</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">九月 2016</a><span class="sidebar-module-list-count">6</span></li></ul>
   </div>
 
 
@@ -254,6 +258,10 @@
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/10/21/Create-a-slack-bot/">Create a slack bot</a>
+        </li>
       
         <li>
           <a href="/2016/10/20/Custom-classifier-of-IBM-visual-recogintion/">Custom classifier of IBM visual recogintion</a>
@@ -269,10 +277,6 @@
       
         <li>
           <a href="/2016/09/09/Creating-Flow-In-Node-Red-2/">Creating Flow In Node Red - 2</a>
-        </li>
-      
-        <li>
-          <a href="/2016/09/09/Create-Flow-In-Node-Red-1/">Creating Flow In Node Red - 1</a>
         </li>
       
     </ul>

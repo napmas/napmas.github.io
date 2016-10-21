@@ -123,7 +123,8 @@
 <li>完成後會進入該 Visual Recogntion 的設定/說明主頁，左邊選單有個 Service Credentials 點了之後會顯示類似下面這樣的資訊，把其中的 api_key 抄下來就可以開始 coding 了<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"credentials"</span>: &#123;</div><div class="line">    <span class="attr">"url"</span>: <span class="string">"https://gateway-a.watsonplatform.net/visual-recognition/api"</span>,</div><div class="line">    <span class="attr">"note"</span>: <span class="string">"It may take up to 5 minutes for this key to become active. This is your previously active free apikey. If you want a different one, please wait 24 hours after unbinding the key and try again."</span>,</div><div class="line">    <span class="attr">"api_key"</span>: <span class="string">"你以為我會讓你看到我的 api key 嗎?"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure> 
 </li>
 </ol>
-<h3 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h3><p>IBM visualt recognition API 的說明在<a href="https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/" target="_blank" rel="external">這邊</a>，能玩的說真的不太多，以下簡單請近期最出名的兩位名人協助做 classify / detect face 的測試<br><img src="/2016/09/30/Visual-recognition-of-Google-IBM/1.jpg" alt="celebrities" title="celebrities"></p>
+<h3 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h3><p>IBM visualt recognition API 的說明在<a href="https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/" target="_blank" rel="external">這邊</a>，能玩的說真的不太多，以下簡單請近期最出名的兩位名人協助做 classify / detect face 的測試
+<img src="/2016/09/30/Visual-recognition-of-Google-IBM/1.jpg" alt="celebrities" title="celebrities"></p>
 <ul>
 <li>在專案目錄下執行 <code>npm init</code> 建立 package.json</li>
 <li>執行<code>npm install watson-developer-cloud --save</code>安裝必要的模組</li>
@@ -131,11 +132,13 @@
 <li>執行<code>npm imb_visual_recogntion</code>, 結果如下 <figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"custom_classes"</span>: <span class="number">0</span>,</div><div class="line">  <span class="attr">"images"</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">"classifiers"</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="attr">"classes"</span>: [</div><div class="line">            &#123;</div><div class="line">              <span class="attr">"class"</span>: <span class="string">"person"</span>,</div><div class="line">              <span class="attr">"score"</span>: <span class="number">0.999888</span>,</div><div class="line">              <span class="attr">"type_hierarchy"</span>: <span class="string">"/people"</span></div><div class="line">            &#125;</div><div class="line">          ],</div><div class="line">          <span class="attr">"classifier_id"</span>: <span class="string">"default"</span>,</div><div class="line">          <span class="attr">"name"</span>: <span class="string">"default"</span></div><div class="line">        &#125;</div><div class="line">      ],</div><div class="line">      <span class="attr">"image"</span>: <span class="string">"1.jpg"</span></div><div class="line">    &#125;</div><div class="line">  ],</div><div class="line">  <span class="attr">"images_processed"</span>: <span class="number">1</span></div><div class="line">&#125;</div><div class="line">&#123;</div><div class="line">  <span class="attr">"images"</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">"faces"</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="attr">"age"</span>: &#123;</div><div class="line">            <span class="attr">"max"</span>: <span class="number">64</span>,</div><div class="line">            <span class="attr">"min"</span>: <span class="number">55</span>,</div><div class="line">            <span class="attr">"score"</span>: <span class="number">0.564336</span></div><div class="line">          &#125;,</div><div class="line">          <span class="attr">"face_location"</span>: &#123;</div><div class="line">            <span class="attr">"height"</span>: <span class="number">316</span>,</div><div class="line">            <span class="attr">"left"</span>: <span class="number">435</span>,</div><div class="line">            <span class="attr">"top"</span>: <span class="number">369</span>,</div><div class="line">            <span class="attr">"width"</span>: <span class="number">303</span></div><div class="line">          &#125;,</div><div class="line">          <span class="attr">"gender"</span>: &#123;</div><div class="line">            <span class="attr">"gender"</span>: <span class="string">"MALE"</span>,</div><div class="line">            <span class="attr">"score"</span>: <span class="number">0.99593</span></div><div class="line">          &#125;,</div><div class="line">          <span class="attr">"identity"</span>: &#123;</div><div class="line">            <span class="attr">"name"</span>: <span class="string">"Donald Trump"</span>,</div><div class="line">            <span class="attr">"score"</span>: <span class="number">0.817574</span>,</div><div class="line">            <span class="attr">"type_hierarchy"</span>: <span class="string">"/people/celebrities/donald trump"</span></div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      ],</div><div class="line">      <span class="attr">"image"</span>: <span class="string">"1.jpg"</span></div><div class="line">    &#125;</div><div class="line">  ],</div><div class="line">  <span class="attr">"images_processed"</span>: <span class="number">1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>說真的，結果有點讓人失望，像是人臉辨識的部份只認得川普 ? 不怕希<del>婆</del>拉蕊<strong>吉</strong>你歧視嗎 ?XD 這部份，google 真的要強一點。<br>想直接看測試結果的，可以到<a href="http://www.ibm.com/watson/developercloud/visual-recognition.html" target="_blank" rel="external">官網</a>，把圖片丟到 try it out 的框框裡玩玩。</p>
+<p>說真的，結果有點讓人失望，像是人臉辨識的部份只認得川普 ? 不怕希<del>婆</del>拉蕊<strong>吉</strong>你歧視嗎 ?XD 這部份，google 真的要強一點。
+想直接看測試結果的，可以到<a href="http://www.ibm.com/watson/developercloud/visual-recognition.html" target="_blank" rel="external">官網</a>，把圖片丟到 try it out 的框框裡玩玩。</p>
 <p>IBM 的visual recogntion 另外可以玩的的還有自己訓練分類資料，但我<del>要打電動</del>手頭的測試資料不足，就先不測了，來玩玩 google cloud vision api。</p>
 <p>p.s 官方有份 node application (on bluemix) 的原始碼在  <a href="https://github.com/watson-developer-cloud/visual-recognition-nodejs" target="_blank" rel="external">Github</a>，如果有使用 bluemix 經驗的，是份不錯的範本，但若是先前沒使用過就直接跳進來看或是執行，可能會對裡頭的 cf (cloud foundry)等名詞、bluemix的執行階層等感到霧殺殺，也會對 api_key 的生成/管理有點疑惑 XD (對，就是我)，建議像上面一樣由簡單的 bluemix api 呼叫開始，有點概念後，再建 web/mobile application。 </p>
 <h2 id="Google-Cloud-Vision-API"><a href="#Google-Cloud-Vision-API" class="headerlink" title="Google Cloud Vision API"></a>Google Cloud Vision API</h2><hr>
-<h3 id="申請-1"><a href="#申請-1" class="headerlink" title="申請"></a>申請</h3><p>講到 google cloud api 的申請天就要黑一邊，很多測試階段必要的動作都得做完(eg, 帳單設定)，UX的設計也常讓人找不到東西在那邊 = =<br>以下簡單摘要申請的流程</p>
+<h3 id="申請-1"><a href="#申請-1" class="headerlink" title="申請"></a>申請</h3><p>講到 google cloud api 的申請天就要黑一邊，很多測試階段必要的動作都得做完(eg, 帳單設定)，UX的設計也常讓人找不到東西在那邊 = = 
+以下簡單摘要申請的流程</p>
 <ol>
 <li>申請 google 帳號。</li>
 <li>到 <a href="https://console.developers.google.com/project" target="_blank" rel="external">Google Console API</a> 申請一個(測試)專案，在專案名稱下方會有個「專案 ID」，先記下來，之後寫 code 的時候會用到，建立完成後頁面會自動跳到該專案的資料庫設定，這個時候可以選擇要啟用的 google api , 我們要測試的 vision api 在第一類的 Google Cloud API 裡的最後一個，要點開更多才看得到，也可以直接在「搜群所有 API 」中直接輸入 vision。</li>
@@ -147,7 +150,8 @@
 </ol>
 <p>如果沒有意外的話，到這邊<del>你的程式應該都寫完了</del> vision api 的使用設定算告一個段落，有夠煩，G 社你跟IBM學學嘛 !!</p>
 <p>p.s 在啟用 API 前， G 社會先檢查你是不是<del>有錢人</del>有合法付費設定，沒有的話會直接跳到帳單設定部份，乖乖繳<del>保護費</del>設定就是了。</p>
-<h3 id="測試-1"><a href="#測試-1" class="headerlink" title="測試"></a>測試</h3><p>Google vsion api 的(Node 版本)說明頁在<a href="https://googlecloudplatform.github.io/google-cloud-node/#/docs/vision/0.3.0/vision" target="_blank" rel="external">這邊</a> ，以下是簡單的執行範例<br>測試資料的部份依然請出近期世上最紅的兩位名人協助。</p>
+<h3 id="測試-1"><a href="#測試-1" class="headerlink" title="測試"></a>測試</h3><p>Google vsion api 的(Node 版本)說明頁在<a href="https://googlecloudplatform.github.io/google-cloud-node/#/docs/vision/0.3.0/vision" target="_blank" rel="external">這邊</a> ，以下是簡單的執行範例
+測試資料的部份依然請出近期世上最紅的兩位名人協助。</p>
 <ul>
 <li>在專案目錄下執行 <code>npm init</code> 建立 package.json</li>
 <li>執行<code>npm install --save google-cloud</code> 安裝google cloud 的 node js module  (原則上不用全裝，但我執行的時候碰到找不到的錯誤，全裝就解決了)</li>
@@ -184,7 +188,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://napmas.github.io/2016/09/30/Visual-recognition-of-Google-IBM/" data-id="ciui1i3yc000b5jthy5rppi6z" class="article-share-link">
+      <a data-url="http://napmas.github.io/2016/09/30/Visual-recognition-of-Google-IBM/" data-id="ciujm6epj000cqfthb3bejtwz" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -228,7 +232,7 @@
   
   <div class="sidebar-module">
     <h4>Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/">node-red</a><span class="sidebar-module-list-count">3</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/flow/">flow</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">2</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/bot/">bot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/">node-red</a><span class="sidebar-module-list-count">3</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/flow/">flow</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">2</span></li></ul>
   </div>
 
 
@@ -236,7 +240,7 @@
   
   <div class="sidebar-module">
     <h4>Tags</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node-red/">node-red</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition-ibm-google/">visual-recognition, ibm, google</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node-red/">node-red</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/slack-bot/">slack, bot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition-ibm-google/">visual-recognition, ibm, google</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -245,7 +249,7 @@
   <div class="sidebar-module">
     <h4>Tag Cloud</h4>
     <p class="tagcloud">
-      <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-red/" style="font-size: 20px;">node-red</a> <a href="/tags/visual-recognition/" style="font-size: 10px;">visual-recognition</a> <a href="/tags/visual-recognition-ibm-google/" style="font-size: 10px;">visual-recognition, ibm, google</a>
+      <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-red/" style="font-size: 20px;">node-red</a> <a href="/tags/slack-bot/" style="font-size: 10px;">slack, bot</a> <a href="/tags/visual-recognition/" style="font-size: 10px;">visual-recognition</a> <a href="/tags/visual-recognition-ibm-google/" style="font-size: 10px;">visual-recognition, ibm, google</a>
     </p>
   </div>
 
@@ -253,7 +257,7 @@
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">九月 2016</a><span class="sidebar-module-list-count">6</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">九月 2016</a><span class="sidebar-module-list-count">6</span></li></ul>
   </div>
 
 
@@ -262,6 +266,10 @@
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/10/21/Create-a-slack-bot/">Create a slack bot</a>
+        </li>
       
         <li>
           <a href="/2016/10/20/Custom-classifier-of-IBM-visual-recogintion/">Custom classifier of IBM visual recogintion</a>
@@ -277,10 +285,6 @@
       
         <li>
           <a href="/2016/09/09/Creating-Flow-In-Node-Red-2/">Creating Flow In Node Red - 2</a>
-        </li>
-      
-        <li>
-          <a href="/2016/09/09/Create-Flow-In-Node-Red-1/">Creating Flow In Node Red - 1</a>
         </li>
       
     </ul>

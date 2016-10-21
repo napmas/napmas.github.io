@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Create a slack bot | The Moment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近 chatbot 有點流行，讓人有點癢，算來算去，slack的介接可能是最簡單的，先弄個簡單的殼，說不定晚點會用到。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Create a slack bot">
+<meta property="og:url" content="http://napmas.github.io/2016/10/21/Create-a-slack-bot/index.html">
+<meta property="og:site_name" content="The Moment">
+<meta property="og:description" content="最近 chatbot 有點流行，讓人有點癢，算來算去，slack的介接可能是最簡單的，先弄個簡單的殼，說不定晚點會用到。">
+<meta property="og:image" content="http://napmas.github.io/2016/10/21/Create-a-slack-bot/03.png">
+<meta property="og:updated_time" content="2016-10-21T10:18:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Create a slack bot">
+<meta name="twitter:description" content="最近 chatbot 有點流行，讓人有點癢，算來算去，slack的介接可能是最簡單的，先弄個簡單的殼，說不定晚點會用到。">
+<meta name="twitter:image" content="http://napmas.github.io/2016/10/21/Create-a-slack-bot/03.png">
+  
+    <link rel="alternate" href="/atom.xml" title="The Moment" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">The Moment</h1>
+  
+    <p class="lead blog-description">阿宅的筆記</p>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-Create-a-slack-bot" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Create a slack bot
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2016/10/21/Create-a-slack-bot/" class="article-date"><time datetime="2016-10-21T08:46:47.000Z" itemprop="datePublished">2016-10-21</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/bot/">bot</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近 chatbot 有點流行，讓人有點癢，算來算去，slack的介接可能是最簡單的，先弄個簡單的殼，說不定晚點會用到。</p>
+<a id="more"></a>
+<p>弄一個slack的步驟如下</p>
+<ol>
+<li><p>申請一個 slack team</p>
+</li>
+<li><p>在 team 設定的 <a href="https://cht-planb.slack.com/apps/build/custom-integration" target="_blank" rel="external">Build a custom integration</a> 裡選擇 Bots ，然後幫它取個名字(Eg. mybot)，按下「Add bot integration」，會跳到設定頁，抄下API token 後就可以去 Coding 了。</p>
+</li>
+<li><p>Slack 有提供 API 給你玩，但這年頭自己從頭兜太累了，由於 chatbot 的流行，目前已經有好幾套 bot framework ，像是 hubot、 botkit 等等，前者好像比較強大，但要額外裝一些東西，暫不考慮，先用 botkit 玩玩。在專案目錄執行 <code>npm install --save botkit</code> 安裝。</p>
+</li>
+<li><p>編寫程式碼，由於只想體驗一下，所以沒做什麼事，讓它啟動時可以在 general channel 打個招呼，然後進行簡單的對話就好，程式碼如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!process.env.token) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Error: Specify token in environment"</span>);</div><div class="line">    process.exit(<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> Botkit = <span class="built_in">require</span>(<span class="string">"Botkit"</span>);</div><div class="line"><span class="keyword">var</span> os = <span class="built_in">require</span>(<span class="string">"os"</span>);</div><div class="line"><span class="keyword">var</span> controller = Botkit.slackbot(&#123;</div><div class="line">    debug: <span class="literal">true</span>,</div><div class="line">&#125;);</div><div class="line"><span class="keyword">var</span> bot = controller.spawn( &#123;</div><div class="line">    token: process.env.token</div><div class="line">&#125;).startRTM();</div><div class="line">controller.on(<span class="string">"rtm_open"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">bot, config</span>)</span>&#123;</div><div class="line">    bot.say(&#123;</div><div class="line">        text: <span class="string">"大家好，達給厚，哇洗 BOT。哇蝦咪攏姆哉，五歹幾賣門哇，感溫~~"</span>, </div><div class="line">        channel: <span class="string">"C02FWN249"</span></div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line">controller.hears([<span class="string">"哩厚"</span>], <span class="string">"direct_message,direct_mention,mention"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">bot, message</span>) </span>&#123;</div><div class="line">    controller.storage.users.get(message.user, <span class="function"><span class="keyword">function</span>(<span class="params">err, user</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (user &amp;&amp; user.name) &#123;</div><div class="line">            bot.reply(message, user.name + <span class="string">"哩厚!!"</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            bot.reply(message, <span class="string">"三小."</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line">controller.hears([<span class="string">"叫哇(.*)"</span>], <span class="string">"direct_message,direct_mention,mention"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">bot, message</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> name = message.match[<span class="number">1</span>];</div><div class="line">    controller.storage.users.get(message.user, <span class="function"><span class="keyword">function</span>(<span class="params">err, user</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!user) &#123;</div><div class="line">            user = &#123;</div><div class="line">                id: message.user,</div><div class="line">            &#125;;</div><div class="line">        &#125;</div><div class="line">        user.name = name;</div><div class="line">        controller.storage.users.save(user, <span class="function"><span class="keyword">function</span>(<span class="params">err, id</span>) </span>&#123;</div><div class="line">            bot.reply(message, <span class="string">"三小, "</span> + name +<span class="string">"!"</span>);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line">controller.hears([<span class="string">"叫阮ㄟ名"</span>], <span class="string">"direct_message,direct_mention,mention"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">bot, message</span>) </span>&#123;</div><div class="line">    controller.storage.users.get(message.user, <span class="function"><span class="keyword">function</span>(<span class="params">err, user</span>) </span>&#123;</div><div class="line">        bot.reply(message, <span class="string">"為您獻上一曲\nhttps://www.youtube.com/watch?v=BMmbIU8NqIU"</span>);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line">controller.hears([<span class="string">"閃啦"</span>], <span class="string">'direct_message,direct_mention,mention'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">bot, message</span>) </span>&#123;</div><div class="line">    bot.startConversation(message, <span class="function"><span class="keyword">function</span>(<span class="params">err, convo</span>) </span>&#123;</div><div class="line">        convo.ask(<span class="string">"金價ㄇㄟ啊捏 ?"</span>, [</div><div class="line">            &#123;</div><div class="line">                pattern: bot.utterances.yes,</div><div class="line">                callback: <span class="function"><span class="keyword">function</span>(<span class="params">response, convo</span>) </span>&#123;</div><div class="line">                    convo.say(<span class="string">"厚!金厚!\nhttps://www.youtube.com/watch?v=R_kfm1ea7Wo"</span>);</div><div class="line">                    convo.next();</div><div class="line">                    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                        process.exit();</div><div class="line">                    &#125;, <span class="number">3000</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                pattern: bot.utterances.no,</div><div class="line">                <span class="keyword">default</span>: <span class="literal">true</span>,</div><div class="line">                callback: <span class="function"><span class="keyword">function</span>(<span class="params">response, convo</span>) </span>&#123;</div><div class="line">                    convo.say(<span class="string">"喝嘎在!!"</span>);</div><div class="line">                    convo.next();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        ]);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line">controller.hears([<span class="string">"幾歲"</span>, <span class="string">"安安"</span>, <span class="string">"給把嗎"</span>],</div><div class="line">    <span class="string">"direct_message,direct_mention,mention"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">bot, message</span>) </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">var</span> hostname = os.hostname();</div><div class="line">        <span class="keyword">var</span> uptime = formatUptime(process.uptime());</div><div class="line"></div><div class="line">        bot.reply(message,</div><div class="line">            <span class="string">':robot_face: I am a bot named &lt;@'</span> + bot.identity.name +</div><div class="line">             <span class="string">'&gt;. I have been running for '</span> + uptime + <span class="string">' on '</span> + hostname + <span class="string">'.'</span>);</div><div class="line"></div><div class="line">    &#125;);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatUptime</span>(<span class="params">uptime</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> unit = <span class="string">'second'</span>;</div><div class="line">    <span class="keyword">if</span> (uptime &gt; <span class="number">60</span>) &#123;</div><div class="line">        uptime = uptime / <span class="number">60</span>;</div><div class="line">        unit = <span class="string">'minute'</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (uptime &gt; <span class="number">60</span>) &#123;</div><div class="line">        uptime = uptime / <span class="number">60</span>;</div><div class="line">        unit = <span class="string">'hour'</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (uptime != <span class="number">1</span>) &#123;</div><div class="line">        unit = unit + <span class="string">'s'</span>;</div><div class="line">    &#125;</div><div class="line">    uptime = uptime + <span class="string">' '</span> + unit;</div><div class="line">    <span class="keyword">return</span> uptime;</div><div class="line">&#125;</div><div class="line">controller.hears([<span class="string">"(.*)"</span>], <span class="string">"direct_message,direct_mention,mention"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">bot, message</span>) </span>&#123;</div><div class="line">    bot.reply(message, <span class="string">"哩供瞎?"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>基本上很簡單，由環境變數讀入 API token 後建立 Controller (可設定debug on/off)，再用你的token建立bot並開啟 RTM 對話，然後就可以透過 .hears() 捕捉對話字串並進行適當的回應，比較 tricky 的地方是若要在 run 起來的時候在某個頻道送訊息的話，要透過 on RTM_OPEN 事件做，而指定channel id 是透過 channel id 而不是 channel name (channel id 可以透過 <a href="https://api.slack.com/methods/channels.list" target="_blank" rel="external">https://api.slack.com/methods/channels.list</a> 查詢)</p>
+<ol>
+<li>執行<code>token=&lt;YOUR_API_TOKEN&gt; node bot.src</code>就可以把它跑起來了，範例畫面如下<br><img src="/2016/10/21/Create-a-slack-bot/03.png" alt="03.png" title="">
+</li>
+</ol>
+<p>Done!</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://napmas.github.io/2016/10/21/Create-a-slack-bot/" data-id="ciujm6eox0004qfth5kry4wip" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/slack-bot/">slack, bot</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2016/10/20/Custom-classifier-of-IBM-visual-recogintion/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Custom classifier of IBM visual recogintion</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/bot/">bot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/">node-red</a><span class="sidebar-module-list-count">3</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/flow/">flow</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">2</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node-red/">node-red</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/slack-bot/">slack, bot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition-ibm-google/">visual-recognition, ibm, google</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-red/" style="font-size: 20px;">node-red</a> <a href="/tags/slack-bot/" style="font-size: 10px;">slack, bot</a> <a href="/tags/visual-recognition/" style="font-size: 10px;">visual-recognition</a> <a href="/tags/visual-recognition-ibm-google/" style="font-size: 10px;">visual-recognition, ibm, google</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">九月 2016</a><span class="sidebar-module-list-count">6</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/10/21/Create-a-slack-bot/">Create a slack bot</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/20/Custom-classifier-of-IBM-visual-recogintion/">Custom classifier of IBM visual recogintion</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/30/Visual-recognition-of-Google-IBM/">Visual recognition of Google/IBM</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/10/Creating-Flow-in-Node-Red-3/">Creating Flow in Node Red - 3</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/09/Creating-Flow-In-Node-Red-2/">Creating Flow In Node Red - 2</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Yu-Wen Huang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

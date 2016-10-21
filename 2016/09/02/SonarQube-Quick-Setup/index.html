@@ -111,7 +111,8 @@
 
     <div class="article-entry" itemprop="articleBody">
       
-        <p>程式碼分析工具 SonarQube 初步設定與執行<br><a id="more"></a></p>
+        <p>程式碼分析工具 SonarQube 初步設定與執行
+<a id="more"></a></p>
 <p>SonarQube 分兩個部份，一個是Web管理平台，一個是執行程碼掃描的 Scanner，設定與執行都是分開的，以下也分開解說。</p>
 <h2 id="下載"><a href="#下載" class="headerlink" title="下載"></a>下載</h2><hr>
 <ol>
@@ -124,12 +125,16 @@
 <h4 id="SonarQube"><a href="#SonarQube" class="headerlink" title="SonarQube"></a>SonarQube</h4><p>都不用改設定就可以跑了，但如果想跑得快一點，可以加大執行的Memory Heap size．</p>
 <p>編輯 <code>/opt/sonarqube-6.0/conf/sonar.properties</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sonar.web.javaOpts=-Xmx2048m -Xms1024m -XX:+HeapDumpOnOutOfMemoryError</div></pre></td></tr></table></figure>
-<h4 id="Sonar-Scanner"><a href="#Sonar-Scanner" class="headerlink" title="Sonar Scanner"></a>Sonar Scanner</h4><p>編輯 <code>/opt/sonar-scanner-2.7/conf/sonar-scanner.properties</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#----- Default SonarQube server</div><div class="line">sonar.host.url=http://localhost:9000</div><div class="line">#----- Default source code encoding</div><div class="line">sonar.sourceEncoding=UTF-8</div></pre></td></tr></table></figure></p>
+<h4 id="Sonar-Scanner"><a href="#Sonar-Scanner" class="headerlink" title="Sonar Scanner"></a>Sonar Scanner</h4><p>編輯 <code>/opt/sonar-scanner-2.7/conf/sonar-scanner.properties</code>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#----- Default SonarQube server</div><div class="line">sonar.host.url=http://localhost:9000</div><div class="line">#----- Default source code encoding</div><div class="line">sonar.sourceEncoding=UTF-8</div></pre></td></tr></table></figure></p>
 <h2 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h2><hr>
-<h4 id="SonarQube-1"><a href="#SonarQube-1" class="headerlink" title="SonarQube"></a>SonarQube</h4><p>執行 <code>/opt/sonarqube-6.0/bin/macosx-universal-64/sonar.sh</code><br>沒意外的話，打開 <a href="http://localhost:9000" target="_blank" rel="external">http://localhost:9000</a> 就會看到它的 web portal , 預設以 admin / admin 登入</p>
-<h4 id="SonarScanner"><a href="#SonarScanner" class="headerlink" title="SonarScanner"></a>SonarScanner</h4><p>在你需要掃描的專案目錄下新增一個檔案 sonar-project.properties<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># Required metadata</div><div class="line">sonar.projectKey=ThousandMilesEye</div><div class="line">sonar.projectName=ThousandMilesEye</div><div class="line">sonar.projectVersion=0.1</div><div class="line"></div><div class="line"># Path to the parent source code directory.</div><div class="line"># Path is relative to the sonar-project.properties file. Replace &quot;\&quot; by &quot;/&quot; on Windows.</div><div class="line"># Since SonarQube 4.2, this property is optional if sonar.modules is set.</div><div class="line"># If not set, SonarQube starts looking for source code from the directory containing</div><div class="line"># the sonar-project.properties file.</div><div class="line">sonar.sources=SomeFolderPointTo/src</div></pre></td></tr></table></figure></p>
+<h4 id="SonarQube-1"><a href="#SonarQube-1" class="headerlink" title="SonarQube"></a>SonarQube</h4><p>執行 <code>/opt/sonarqube-6.0/bin/macosx-universal-64/sonar.sh</code> 
+沒意外的話，打開 <a href="http://localhost:9000" target="_blank" rel="external">http://localhost:9000</a> 就會看到它的 web portal , 預設以 admin / admin 登入</p>
+<h4 id="SonarScanner"><a href="#SonarScanner" class="headerlink" title="SonarScanner"></a>SonarScanner</h4><p>在你需要掃描的專案目錄下新增一個檔案 sonar-project.properties
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># Required metadata</div><div class="line">sonar.projectKey=ThousandMilesEye</div><div class="line">sonar.projectName=ThousandMilesEye</div><div class="line">sonar.projectVersion=0.1</div><div class="line"></div><div class="line"># Path to the parent source code directory.</div><div class="line"># Path is relative to the sonar-project.properties file. Replace &quot;\&quot; by &quot;/&quot; on Windows.</div><div class="line"># Since SonarQube 4.2, this property is optional if sonar.modules is set.</div><div class="line"># If not set, SonarQube starts looking for source code from the directory containing</div><div class="line"># the sonar-project.properties file.</div><div class="line">sonar.sources=SomeFolderPointTo/src</div></pre></td></tr></table></figure></p>
 <p>接著再執行 /opt/sonar-scanner-2.7/bin/sonar-scanner 就會開始分析你的程式碼</p>
-<p>分析完成後，就會在 Web portal 裡的 Dashboard 中看到分析結果，有問題的部份，會有建議修正的方式，對於提昇程式碼品質相當不賴。<br><img src="/2016/09/02/SonarQube-Quick-Setup/screenshot.png" alt="Screenshot" title="Screenshot"></p>
+<p>分析完成後，就會在 Web portal 裡的 Dashboard 中看到分析結果，有問題的部份，會有建議修正的方式，對於提昇程式碼品質相當不賴。
+<img src="/2016/09/02/SonarQube-Quick-Setup/screenshot.png" alt="Screenshot" title="Screenshot"></p>
 
       
     </div>
@@ -140,7 +145,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://napmas.github.io/2016/09/02/SonarQube-Quick-Setup/" data-id="ciui1i3y7000a5jth5hwwum6y" class="article-share-link">
+      <a data-url="http://napmas.github.io/2016/09/02/SonarQube-Quick-Setup/" data-id="ciujm6epf000aqfth9e64pto7" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -184,7 +189,7 @@
   
   <div class="sidebar-module">
     <h4>Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/">node-red</a><span class="sidebar-module-list-count">3</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/flow/">flow</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">2</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/bot/">bot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/">node-red</a><span class="sidebar-module-list-count">3</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/flow/">flow</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">2</span></li></ul>
   </div>
 
 
@@ -192,7 +197,7 @@
   
   <div class="sidebar-module">
     <h4>Tags</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node-red/">node-red</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition-ibm-google/">visual-recognition, ibm, google</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node-red/">node-red</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/slack-bot/">slack, bot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition-ibm-google/">visual-recognition, ibm, google</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -201,7 +206,7 @@
   <div class="sidebar-module">
     <h4>Tag Cloud</h4>
     <p class="tagcloud">
-      <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-red/" style="font-size: 20px;">node-red</a> <a href="/tags/visual-recognition/" style="font-size: 10px;">visual-recognition</a> <a href="/tags/visual-recognition-ibm-google/" style="font-size: 10px;">visual-recognition, ibm, google</a>
+      <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-red/" style="font-size: 20px;">node-red</a> <a href="/tags/slack-bot/" style="font-size: 10px;">slack, bot</a> <a href="/tags/visual-recognition/" style="font-size: 10px;">visual-recognition</a> <a href="/tags/visual-recognition-ibm-google/" style="font-size: 10px;">visual-recognition, ibm, google</a>
     </p>
   </div>
 
@@ -209,7 +214,7 @@
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">九月 2016</a><span class="sidebar-module-list-count">6</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">九月 2016</a><span class="sidebar-module-list-count">6</span></li></ul>
   </div>
 
 
@@ -218,6 +223,10 @@
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/10/21/Create-a-slack-bot/">Create a slack bot</a>
+        </li>
       
         <li>
           <a href="/2016/10/20/Custom-classifier-of-IBM-visual-recogintion/">Custom classifier of IBM visual recogintion</a>
@@ -233,10 +242,6 @@
       
         <li>
           <a href="/2016/09/09/Creating-Flow-In-Node-Red-2/">Creating Flow In Node Red - 2</a>
-        </li>
-      
-        <li>
-          <a href="/2016/09/09/Create-Flow-In-Node-Red-1/">Creating Flow In Node Red - 1</a>
         </li>
       
     </ul>
