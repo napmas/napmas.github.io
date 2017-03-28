@@ -3,20 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>SonarQube Quick Setup | The Moment</title>
+  <title>Auto deployment on vs code | The Moment</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="程式碼分析工具 SonarQube 初步設定與執行">
+  <meta name="description" content="一直進入不了開發狀態，一定是 ediotr 不順手造成的 (誤
+記錄一下小改造的過程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SonarQube Quick Setup">
-<meta property="og:url" content="http://napmas.github.io/2016/09/02/SonarQube-Quick-Setup/index.html">
+<meta property="og:title" content="Auto deployment on vs code">
+<meta property="og:url" content="http://napmas.github.io/2017/03/28/Auto-deployment-on-vs-code/index.html">
 <meta property="og:site_name" content="The Moment">
-<meta property="og:description" content="程式碼分析工具 SonarQube 初步設定與執行">
-<meta property="og:image" content="http://napmas.github.io/2016/09/02/SonarQube-Quick-Setup/screenshot.png">
-<meta property="og:updated_time" content="2016-09-09T07:58:38.000Z">
+<meta property="og:description" content="一直進入不了開發狀態，一定是 ediotr 不順手造成的 (誤
+記錄一下小改造的過程">
+<meta property="og:updated_time" content="2017-03-28T09:52:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SonarQube Quick Setup">
-<meta name="twitter:description" content="程式碼分析工具 SonarQube 初步設定與執行">
-<meta name="twitter:image" content="http://napmas.github.io/2016/09/02/SonarQube-Quick-Setup/screenshot.png">
+<meta name="twitter:title" content="Auto deployment on vs code">
+<meta name="twitter:description" content="一直進入不了開發狀態，一定是 ediotr 不順手造成的 (誤
+記錄一下小改造的過程">
   
     <link rel="alternate" href="/atom.xml" title="The Moment" type="application/atom+xml">
   
@@ -81,13 +82,13 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          <article id="post-SonarQube-Quick-Setup" class="article article-type-post" itemscope itemprop="blogPost">
+          <article id="post-Auto-deployment-on-vs-code" class="article article-type-post" itemscope itemprop="blogPost">
 
   <header class="article-header">
     
   
     <h1 class="article-title" itemprop="name">
-      SonarQube Quick Setup
+      Auto deployment on vs code
     </h1>
   
 
@@ -96,13 +97,13 @@
 
   <div class="article-meta">
     <div class="article-datetime">
-  <a href="/2016/09/02/SonarQube-Quick-Setup/" class="article-date"><time datetime="2016-09-02T08:39:19.000Z" itemprop="datePublished">2016-09-02</time></a>
+  <a href="/2017/03/28/Auto-deployment-on-vs-code/" class="article-date"><time datetime="2017-03-28T09:05:32.000Z" itemprop="datePublished">2017-03-28</time></a>
 </div>
 
     
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/SonarQube/">SonarQube</a> / <a class="article-category-link" href="/categories/SonarQube/Setup/">Setup</a>
+    <a class="article-category-link" href="/categories/tools/">tools</a>
   </div>
 
 
@@ -111,30 +112,26 @@
 
     <div class="article-entry" itemprop="articleBody">
       
-        <p>程式碼分析工具 SonarQube 初步設定與執行
+        <p>一直進入不了開發狀態，一定是 ediotr 不順手造成的 (誤</p>
+<p>記錄一下小改造的過程
 <a id="more"></a></p>
-<p>SonarQube 分兩個部份，一個是Web管理平台，一個是執行程碼掃描的 Scanner，設定與執行都是分開的，以下也分開解說。</p>
-<h2 id="下載"><a href="#下載" class="headerlink" title="下載"></a>下載</h2><hr>
+<p>Visual studio code 應該是目前免費的程式碼編輯器中算相當好用的，但美中不足的一個小地方是缺乏內建的自動佈署到遠端主機的機制，在只能在遠端進行測試的情況，頻繁的手動搬移檔案有點惱人，好在它跟目前多數的編輯器一樣，提供了一些客製功能的空間。以下是一個在 windows 10 的環境下的方式</p>
 <ol>
-<li>從 <a href="http://www.sonarqube.org/downloads/" target="_blank" rel="external">http://www.sonarqube.org/downloads/</a> 下載需要的版本 (eg, sonarqube-6.0.zip)</li>
-<li>從 <a href="http://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner" target="_blank" rel="external">http://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner</a> 下載 LTS 版本</li>
+<li><p><del>安裝 vs code</del></p>
+</li>
+<li><p>因為在 win 10，習慣的同步工具(rsync, scp … )通通從缺，好在還有一個免費的 winscp 可以用，為了自己好，裝了它。 (有 windows 版的 rsync ，但… 如果你需要走 ssh ，那… 還是直接裝 winscp 省心點)</p>
+</li>
+<li><p>vs code 中安裝 Run on save 這個人家寫好的 extension，並在 vs code 的環境設定檔( settings.json ) 內加上相關的設定。設定完它什麼事都還不會做，你必須指定它在存檔時要做的事 (cmd)。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// run on save</div><div class="line">"emeraldwalk.runonsave": &#123;</div><div class="line">    "commands": [</div><div class="line">        &#123;</div><div class="line">            "match": ".*",</div><div class="line">            "cmd": "sync_file.bat $&#123;workspaceRoot&#125; $&#123;file&#125;"</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>要下的 cmd 如果是在 un*x 下，大概只要下個 scp/rsync 就能收工，只可惜，我們是在<del>他媽的</del> windows 上，必要很苦命的寫個 batch 完成要做的事。run on save 預設的執行路徑是 vs code 的 home 的路徑，安裝時沒有手賤的話，通常會在 <code>C:\Program Files (x86)\Microsoft VS Code</code>，如果不想解決 run on save 解析執行路徑的問題，就把要它在存檔時執行的程式放這邊就好，，在上面的設定範例中，要執行的檔案叫 sync_file.bat 後頭接兩個參數: 目前 vs code 的工作目錄，跟目前正在編輯檔案的完整路徑，</p>
+</li>
+<li><p>要做的事很簡單，就是存檔後，上傳到遠端的某個相對的目錄下即可，範例程式碼如下 (不會寫 batch file ，從 stackoverflow 七拼八湊而來，有點蠢我知道 orz)，其中的重點在於<code>&quot;C:\Program Files (x86)\WinSCP\winscp&quot; &lt;remote_id&gt;:&lt;password&gt;@&lt;remote_host&gt; /command &quot;!script!&quot; &quot;exit&quot;</code> 這個 winscp 提供的 command line script 方式，請它把對的檔案 PUT 到對的地方去就。好。了，收工。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">@echo off</div><div class="line">setlocal enabledelayedexpansion</div><div class="line">set &quot;REMOTE_HOME=/&lt;your&gt;/&lt;remote&gt;/&lt;director&gt;&quot;</div><div class="line">set allargs=%*</div><div class="line">IF NOT DEFINED allargs echo no args provided&amp;GOTO :EOF </div><div class="line">call set curr_file=%%allargs:*%1=%%</div><div class="line">:: trim first white space character</div><div class="line">set curr_file=!curr_file:~1! </div><div class="line">set I=0</div><div class="line">set Idx=-1</div><div class="line">:l</div><div class="line">if &quot;!curr_file:~%I%,1!&quot;==&quot;&quot; goto ld</div><div class="line">if &quot;!curr_file:~%I%,1!&quot;==&quot;\&quot; set Idx=%I%</div><div class="line">set /a I+=1</div><div class="line">goto l</div><div class="line">:ld</div><div class="line">set curr_dir=!curr_file:~0, %Idx%!</div><div class="line">set I=0</div><div class="line">set Idx=-1</div><div class="line">set workspace=%1</div><div class="line">:l2</div><div class="line">if &quot;!workspace:~%I%,1!&quot;==&quot;&quot; goto ld2</div><div class="line">if &quot;!workspace:~%I%,1!&quot;==&quot;\&quot; set Idx=%I%</div><div class="line">    set /a I+=1</div><div class="line">    goto l2</div><div class="line">:ld2</div><div class="line">set /A idx+=1</div><div class="line">:: if current working directory == workspace , sync the file to remote</div><div class="line">echo.%curr_dir% | findstr /C:&quot;%1&quot; &gt; nul &amp;&amp; (</div><div class="line">    set relative_filename=!curr_file:~%Idx%!</div><div class="line">    :: replace &quot;\&quot; with &quot;/&quot;</div><div class="line">    set relative_filename=!relative_filename:\=/!</div><div class="line">    set &quot;script=put !curr_file! !REMOTE_HOME!/!relative_filename!&quot;</div><div class="line">    &quot;C:\Program Files (x86)\WinSCP\winscp&quot; &lt;remote_id&gt;:&lt;password&gt;@&lt;remote_host&gt; /command &quot;!script!&quot; &quot;exit&quot;</div><div class="line">) || (</div><div class="line">    REM echo &quot;not match, do nothing.&quot;</div><div class="line">)</div></pre></td></tr></table></figure>
+</li>
 </ol>
-<p>下載後解到 /opt 下</p>
-<h2 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h2><hr>
-<p>原則上，SonarQube / SonarScanner 都需要利用 dababase 儲存資料，但它內建一個陽春版的讓你測試使用，如果是單機或是體驗用途，可以先不用設定 Database 的部份。</p>
-<h4 id="SonarQube"><a href="#SonarQube" class="headerlink" title="SonarQube"></a>SonarQube</h4><p>都不用改設定就可以跑了，但如果想跑得快一點，可以加大執行的Memory Heap size．</p>
-<p>編輯 <code>/opt/sonarqube-6.0/conf/sonar.properties</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sonar.web.javaOpts=-Xmx2048m -Xms1024m -XX:+HeapDumpOnOutOfMemoryError</div></pre></td></tr></table></figure>
-<h4 id="Sonar-Scanner"><a href="#Sonar-Scanner" class="headerlink" title="Sonar Scanner"></a>Sonar Scanner</h4><p>編輯 <code>/opt/sonar-scanner-2.7/conf/sonar-scanner.properties</code>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#----- Default SonarQube server</div><div class="line">sonar.host.url=http://localhost:9000</div><div class="line">#----- Default source code encoding</div><div class="line">sonar.sourceEncoding=UTF-8</div></pre></td></tr></table></figure></p>
-<h2 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h2><hr>
-<h4 id="SonarQube-1"><a href="#SonarQube-1" class="headerlink" title="SonarQube"></a>SonarQube</h4><p>執行 <code>/opt/sonarqube-6.0/bin/macosx-universal-64/sonar.sh</code> 
-沒意外的話，打開 <a href="http://localhost:9000" target="_blank" rel="external">http://localhost:9000</a> 就會看到它的 web portal , 預設以 admin / admin 登入</p>
-<h4 id="SonarScanner"><a href="#SonarScanner" class="headerlink" title="SonarScanner"></a>SonarScanner</h4><p>在你需要掃描的專案目錄下新增一個檔案 sonar-project.properties
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># Required metadata</div><div class="line">sonar.projectKey=ThousandMilesEye</div><div class="line">sonar.projectName=ThousandMilesEye</div><div class="line">sonar.projectVersion=0.1</div><div class="line"></div><div class="line"># Path to the parent source code directory.</div><div class="line"># Path is relative to the sonar-project.properties file. Replace &quot;\&quot; by &quot;/&quot; on Windows.</div><div class="line"># Since SonarQube 4.2, this property is optional if sonar.modules is set.</div><div class="line"># If not set, SonarQube starts looking for source code from the directory containing</div><div class="line"># the sonar-project.properties file.</div><div class="line">sonar.sources=SomeFolderPointTo/src</div></pre></td></tr></table></figure></p>
-<p>接著再執行 /opt/sonar-scanner-2.7/bin/sonar-scanner 就會開始分析你的程式碼</p>
-<p>分析完成後，就會在 Web portal 裡的 Dashboard 中看到分析結果，有問題的部份，會有建議修正的方式，對於提昇程式碼品質相當不賴。
-<img src="/2016/09/02/SonarQube-Quick-Setup/screenshot.png" alt="Screenshot" title="Screenshot"></p>
+<p>p.s<br>winscp 同時也提供了 synchronize 指令(類似 rsync )，要的話也可以用 synchronize 同步兩地目錄即可，只是在目前我的情況下，我的開發環境不完全等同於測試環境，全部同步會有問題，而 synchronize 的-filemask (exclude) 用起來有點問題，短時間內不想處理，加上不一致這件事感覺不是什麼好事，也許之後留在 docker 一併解決吧。</p>
+<p>p.s<br>如果你害怕太自動的事情，似乎也可以寫在 vs code 的 Task 裡，在要的時候才手動執行。</p>
 
       
     </div>
@@ -145,12 +142,12 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://napmas.github.io/2016/09/02/SonarQube-Quick-Setup/" data-id="cj0tbqcxy0007szthstllj0h4" class="article-share-link">
+      <a data-url="http://napmas.github.io/2017/03/28/Auto-deployment-on-vs-code/" data-id="cj0tbqcxb0000szthp5b6ccec" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SonarQube/">SonarQube</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/toots/">toots</a></li></ul>
 
 
     </footer>
@@ -160,19 +157,12 @@
 <ul id="article-nav" class="nav nav-pills nav-justified">
   
   <li role="presentation">
-    <a href="/2016/09/02/HexoQuickSetup/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/10/21/Create-a-slack-bot/" id="article-nav-older" class="article-nav-link-wrap">
       <i class="fa fa-chevron-left pull-left"></i>
-      <span class="article-nav-link-title">Hexo quick setup</span>
+      <span class="article-nav-link-title">Create a slack bot</span>
     </a>
   </li>
   
-  
-  <li role="presentation">
-    <a href="/2016/09/09/Create-Flow-In-Node-Red-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <span class="article-nav-link-title">Creating Flow In Node Red - 1</span>
-      <i class="fa fa-chevron-right pull-right"></i>
-    </a>
-  </li>
   
 </ul>
 
