@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Manually Authenticating Users | The Moment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="做網站總免不了要處理使用者登入、註冊、認証授權…的工作， Laravel 這個 PHP 框架很好心的內建了一整套給你，只要呼叫 php artisan make:auth 再給它適當的資料庫權限執行他的 mirgration sql ，幾乎就可以無痛地擁有一套使用者管理系統，以下是一點使用及客製化的筆記">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Manually Authenticating Users">
+<meta property="og:url" content="http://napmas.github.io/2017/04/06/Manually-Authenticating-Users/index.html">
+<meta property="og:site_name" content="The Moment">
+<meta property="og:description" content="做網站總免不了要處理使用者登入、註冊、認証授權…的工作， Laravel 這個 PHP 框架很好心的內建了一整套給你，只要呼叫 php artisan make:auth 再給它適當的資料庫權限執行他的 mirgration sql ，幾乎就可以無痛地擁有一套使用者管理系統，以下是一點使用及客製化的筆記">
+<meta property="og:updated_time" content="2017-04-07T07:26:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Manually Authenticating Users">
+<meta name="twitter:description" content="做網站總免不了要處理使用者登入、註冊、認証授權…的工作， Laravel 這個 PHP 框架很好心的內建了一整套給你，只要呼叫 php artisan make:auth 再給它適當的資料庫權限執行他的 mirgration sql ，幾乎就可以無痛地擁有一套使用者管理系統，以下是一點使用及客製化的筆記">
+  
+    <link rel="alternate" href="/atom.xml" title="The Moment" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">The Moment</h1>
+  
+    <p class="lead blog-description">阿宅的筆記</p>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-Manually-Authenticating-Users" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Manually Authenticating Users
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/04/06/Manually-Authenticating-Users/" class="article-date"><time datetime="2017-04-06T09:39:37.000Z" itemprop="datePublished">2017-04-06</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Laravel/">Laravel</a> / <a class="article-category-link" href="/categories/Laravel/Authentication/">Authentication</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>做網站總免不了要處理使用者登入、註冊、認証授權…的工作， Laravel 這個 PHP 框架很好心的內建了一整套給你，只要呼叫 <code>php artisan make:auth</code> 再給它適當的資料庫權限執行他的 mirgration sql ，幾乎就可以無痛地擁有一套使用者管理系統，以下是一點使用及客製化的筆記</p>
+<a id="more"></a>
+<ul>
+<li><p>在資料庫建立使用者的資料表，如果使用 <code>database/migrations</code> 下 create user table 的程式讓 Laravel 幫你建的話，名稱預設會叫 Users (這跟 Laravel 使用 Eloquent Model 的方式有關)，不想叫這個名字也沒關係，之後可以改掉。至於資料表中的欄位，Laravel 的要求只有兩個，一個是 password 的欄位長度至少要 60 個字視，而若是要啟用 remember me 功能，要有個至少100 字元長度的 remember_token 的欄位。</p>
+</li>
+<li><p>在專案的 <code>app/Models</code> 下建立 Eloquent Model Users ( Models 目錄要自行建立)，Laravel 預設會使用 <code>default</code> 的 db connection 連到 Users 這個資料表，並以 id 當 primary key 查詢，若是這三個條件都不想用預設值，那也只要指定好 Users 中 $table / $primaryKey / $connection 三個屬性即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">namespace App;</div><div class="line">use Illuminate\Notifications\Notifiable;</div><div class="line">use Illuminate\Foundation\Auth\User as Authenticatable;</div><div class="line">class User extends Authenticatable</div><div class="line">&#123;</div><div class="line">    use Notifiable;</div><div class="line">    protected $table = &apos;User&apos;;</div><div class="line">    /** primary key of the table **/</div><div class="line">    public $primaryKey = &apos;my_primary_key&apos;;</div><div class="line">    /** database connection name in database.php **/</div><div class="line">    protected $connection = &apos;my_connection&apos;;</div><div class="line">    /**</div><div class="line">     * The attributes that are mass assignable.</div><div class="line">     *</div><div class="line">     * @var array</div><div class="line">     */</div><div class="line">    protected $fillable = [</div><div class="line">        &apos;name&apos;, &apos;email&apos;, &apos;password&apos;, &apos;username&apos;</div><div class="line">    ];</div><div class="line">    /**</div><div class="line">     * The attributes that should be hidden for arrays.</div><div class="line">     *</div><div class="line">     * @var array</div><div class="line">     */</div><div class="line">    protected $hidden = [</div><div class="line">        &apos;password&apos;, &apos;remember_token&apos;,</div><div class="line">    ];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>編輯 <code>config/auth.php</code> 修改認証設定，剛開始沒有太搞怪的話，應該只要修改 User Providers 區塊，把 users 這個 model 指到對的 class 去就好</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">...skip</div><div class="line">    &apos;providers&apos; =&gt; [</div><div class="line">        &apos;users&apos; =&gt; [</div><div class="line">            &apos;driver&apos; =&gt; &apos;eloquent&apos;,</div><div class="line">            &apos;model&apos; =&gt; App\Models\Users::class,</div><div class="line">        ],</div><div class="line">    ],</div><div class="line">...skip</div></pre></td></tr></table></figure>
+</li>
+<li><p>設定相關路由。如果一開頭使用 <code>php artisan make:auth</code> 的話，它會在路由設定檔中 <code>routes/web.app</code> ( 5.4 之前的版本好像是在專案根目錄下的  <code>routes.php</code>) 加上一行 <code>Auth::routes()</code> ，執行的 <code>php artisan route:list</code> 會發現多出一大串的路由設定如下，除了 home 用 <code>auth</code> 外，其他的自動套用 <code>guest</code> 這個 middleware</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">| GET|HEAD | home                         |                      | App\Http\Controllers\HomeController@index                              | web,auth     |</div><div class="line">| POST     | login                        |                      | App\Http\Controllers\Auth\LoginController@login                        | web,guest    |</div><div class="line">| GET|HEAD | login                        | login                | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest    |</div><div class="line">| POST     | logout                       | logout               | App\Http\Controllers\Auth\LoginController@logout                       | web          |</div><div class="line">| POST     | password/email               | password.email       | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web,guest    |</div><div class="line">| GET|HEAD | password/reset               | password.request     | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web,guest    |</div><div class="line">| POST     | password/reset               |                      | App\Http\Controllers\Auth\ResetPasswordController@reset                | web,guest    |</div><div class="line">| GET|HEAD | password/reset/&#123;token&#125;       | password.reset       | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web,guest    |</div><div class="line">| GET|HEAD | register                     | register             | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest    |</div><div class="line">| POST     | register                     |                      | App\Http\Controllers\Auth\RegisterController@register                  | web,guest    |</div></pre></td></tr></table></figure>
+</li>
+<li><p>上面這一串完整的 code 在 <code>https://github.com/laravel/framework/blob/5.4/src/Illuminate/Routing/Router.php</code> 中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public function auth()</div><div class="line">&#123;</div><div class="line">    // Authentication Routes...</div><div class="line">    $this-&gt;get(&apos;login&apos;, &apos;Auth\LoginController@showLoginForm&apos;)-&gt;name(&apos;login&apos;);</div><div class="line">    $this-&gt;post(&apos;login&apos;, &apos;Auth\LoginController@login&apos;);</div><div class="line">    $this-&gt;post(&apos;logout&apos;, &apos;Auth\LoginController@logout&apos;)-&gt;name(&apos;logout&apos;);</div><div class="line">    // Registration Routes...</div><div class="line">    $this-&gt;get(&apos;register&apos;, &apos;Auth\RegisterController@showRegistrationForm&apos;)-&gt;name(&apos;register&apos;);</div><div class="line">    $this-&gt;post(&apos;register&apos;, &apos;Auth\RegisterController@register&apos;);</div><div class="line">    // Password Reset Routes...</div><div class="line">    $this-&gt;get(&apos;password/reset&apos;, &apos;Auth\ForgotPasswordController@showLinkRequestForm&apos;)-&gt;name(&apos;password.request&apos;);</div><div class="line">    $this-&gt;post(&apos;password/email&apos;, &apos;Auth\ForgotPasswordController@sendResetLinkEmail&apos;)-&gt;name(&apos;password.email&apos;);</div><div class="line">    $this-&gt;get(&apos;password/reset/&#123;token&#125;&apos;, &apos;Auth\ResetPasswordController@showResetForm&apos;)-&gt;name(&apos;password.reset&apos;);</div><div class="line">    $this-&gt;post(&apos;password/reset&apos;, &apos;Auth\ResetPasswordController@reset&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>由於這個專案僅需要使用者登入認証的部份，所以手動在 <code>routes/web.php</code> 中加入包含登入認証、登入的網頁、登出、及登入後顯示的頁面共四個路由，避免不必要的路由變成沒人管理、被入侵的點</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...skip</div><div class="line">Route::post(&apos;/login&apos;, &apos;App\Http\Controllers\Auth\myController@login&apos;);</div><div class="line">Route::get(&apos;/login&apos;, &apos;App\Http\Controllers\Auth\myController@showLoginForm&apos;)-&gt;name(&apos;login&apos;);</div><div class="line">Route::post(&apos;/logout&apos;, &apos;App\Http\Controllers\Auth\myController@logout&apos;)-&gt;name(&apos;logout&apos;);</div><div class="line">Route::get(&apos;/home&apos;, &apos;HomeController@index&apos;);</div><div class="line">...skip</div></pre></td></tr></table></figure>
+</li>
+<li><p>有了路由後，接著要來寫處理路由的 Controller 了 (app/Http/Controllers/myController.php)。Laravel 生的代碼如下，其中 $redirectTo 指定在完成登入後要導到那去. 另外，預設是使用 email 欄位當帳號，如果要用其他欄位當帳話的話，要自行加一個 username () 函式回傳要當帳號的植位名稱，這邊是用 username 當範例。至於在路由中寫的 login / showLoginForm / logout 三個函式並沒有明確地寫在這邊。相關的函式 Laravel 寫在 <a href="https://github.com/laravel/framework/blob/5.4/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php" target="_blank" rel="external">AuthenticateUsers</a> 這個 trait 中，透過 use 注入到 class 中，如果有客製的需求，自行覆寫掉即可 ( username() 即是被覆寫掉的函式)。另外，Laravel 的範例中，會在建構子中加入路由的 middleware ，先前看到的 <code>guest</code> 就是在這個時候加進來的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">namespace App\Http\Controllers;</div><div class="line">use App\Http\Controllers\Controller;</div><div class="line">use Illuminate\Foundation\Auth\AuthenticatesUsers;</div><div class="line">class myController extends Controller</div><div class="line">&#123;</div><div class="line">    use AuthenticatesUsers;</div><div class="line">    protected $redirectTo = &apos;/home&apos;;</div><div class="line">    public function __construct()</div><div class="line">    &#123;</div><div class="line">        $this-&gt;middleware(&apos;guest&apos;, [&apos;except&apos; =&gt; &apos;logout&apos;]);</div><div class="line">    &#125;</div><div class="line">    public function username()&#123;</div><div class="line">        return &apos;username&apos;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>編寫登入表單的網頁，由於我們等下要使用內建的登入路由，它會去叫用 <code>resources/views/auth/login.blade.php</code>，所以只能乖乖的生一個給它，如果不想用這個預設的路徑，可以在login controller 中覆寫 <code>showLoginForm()</code> 直接回使你要使用的 view 即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">&lt;form class=&quot;form-horizontal&quot; role=&quot;form&quot; method=&quot;POST&quot; action=&quot;&#123;&#123; route(&apos;login&apos;) &#125;&#125;&quot;&gt;</div><div class="line">    &#123;&#123; csrf_field() &#125;&#125;</div><div class="line">    &lt;div class=&quot;form-group&#123;&#123; $errors-&gt;has(&apos;account&apos;) ? &apos; has-error&apos; : &apos;&apos; &#125;&#125;&quot;&gt;</div><div class="line">        &lt;label for=&quot;account&quot; class=&quot;col-md-4 control-label&quot;&gt;Account&lt;/label&gt;</div><div class="line">        &lt;div class=&quot;col-md-6&quot;&gt;</div><div class="line">            &lt;input id=&quot;account&quot; type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;account&quot; value=&quot;&#123;&#123; old(&apos;account&apos;) &#125;&#125;&quot; autofocus&gt;</div><div class="line">            @if ($errors-&gt;has(&apos;account&apos;))</div><div class="line">                &lt;span class=&quot;help-block&quot;&gt;</div><div class="line">                    &lt;strong&gt;&#123;&#123; $errors-&gt;first(&apos;account&apos;) &#125;&#125;&lt;/strong&gt;</div><div class="line">                &lt;/span&gt;</div><div class="line">            @endif</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div class=&quot;form-group&#123;&#123; $errors-&gt;has(&apos;password&apos;) ? &apos; has-error&apos; : &apos;&apos; &#125;&#125;&quot;&gt;</div><div class="line">        &lt;label for=&quot;password&quot; class=&quot;col-md-4 control-label&quot;&gt;Password&lt;/label&gt;</div><div class="line">        &lt;div class=&quot;col-md-6&quot;&gt;</div><div class="line">            &lt;input id=&quot;password&quot; type=&quot;password&quot; class=&quot;form-control&quot; name=&quot;password&quot; required&gt;</div><div class="line">            @if ($errors-&gt;has(&apos;password&apos;))</div><div class="line">                &lt;span class=&quot;help-block&quot;&gt;</div><div class="line">                    &lt;strong&gt;&#123;&#123; $errors-&gt;first(&apos;password&apos;) &#125;&#125;&lt;/strong&gt;</div><div class="line">                &lt;/span&gt;</div><div class="line">            @endif</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div class=&quot;form-group&quot;&gt;</div><div class="line">        &lt;div class=&quot;col-md-6 col-md-offset-4&quot;&gt;</div><div class="line">            &lt;div class=&quot;checkbox&quot;&gt;</div><div class="line">                &lt;label&gt;</div><div class="line">                    &lt;input type=&quot;checkbox&quot; name=&quot;remember&quot; &#123;&#123; old(&apos;remember&apos;) ? &apos;checked&apos; : &apos;&apos; &#125;&#125;&gt; Remember Me</div><div class="line">                &lt;/label&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;div class=&quot;form-group&quot;&gt;</div><div class="line">        &lt;div class=&quot;col-md-8 col-md-offset-4&quot;&gt;</div><div class="line">            &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;</div><div class="line">                Login</div><div class="line">            &lt;/button&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>補一個登入後顯示頁面的 controller <code>app/Http/Controller/HomeController.php</code>及網頁 <code>resources/views/home.blade.php</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">namespace App\Http\Controllers;</div><div class="line">use Illuminate\Http\Request;</div><div class="line">class HomeController extends Controller</div><div class="line">&#123;</div><div class="line">    public function index()</div><div class="line">    &#123;</div><div class="line">        return view(&apos;home&apos;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt;</div><div class="line">&lt;body&gt;</div><div class="line">hellow world!</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>這幾個登入認証相關的路由都會經過的 <code>guest</code> middleware 是定義在 <code>app/Kernel.php</code> 中，指到 <code>app/Http/Middleware/RedirectIfAuthenticated.php</code>，Laravel 預設的程式碼很簡單，大概就是要是已經登入了的話，那就跳到 /home 去，要是沒有，就跳到原先指定的網址，這邊的程式碼是寫死的，要是登入後的首頁不叫 /home ，要記得改一下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public function handle($request, Closure $next, $guard = null)</div><div class="line">&#123;</div><div class="line">    if (Auth::guard($guard)-&gt;check()) &#123;</div><div class="line">        return redirect(&apos;/home&apos;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return $next($request);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果以上寫的沒什麼問題，打開網頁  /login , 因為沒登入過，所以 <code>guest</code> 中的登入判定會失敗，會轉到指定的 /login 看到登入的表單。送出登入後，會 post 給 myController 的 login 函式處理，若是成功就跳到 $redirectTo 指定的網址（/home)，要是失敗就送回失敗訊息。之後若是再打開 /login , 因為登入判定成功，會直接轉到 /home 去，而後其他頁面若是要判定是否登入，只要用 <code>Auth::check()</code> 即可。由於登入檢查幾乎是制式的語法，可以仿照 <code>guest</code> 寫一個 auth 的 middleware 套在需要檢查的路由前自動執行。收工。</p>
+</li>
+<li><p>p.s 若是要取用登入者的資訊，可以使用 <code>$user = Auth::user()</code> 的方式，或是透過 eloquent 威能，用 <code>Auth::id()</code> 取得屬性值。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://napmas.github.io/2017/04/06/Manually-Authenticating-Users/" data-id="cj167pdb3000ay3th21tleyoo" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Laravel-PHP/">Laravel, PHP</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2017/03/28/Auto-deployment-on-vs-code/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Auto deployment on vs code</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Laravel/">Laravel</a><span class="sidebar-module-list-count">1</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Laravel/Authentication/">Authentication</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/SonarQube/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/bot/">bot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/">node-red</a><span class="sidebar-module-list-count">3</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/node-red/flow/">flow</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/tools/">tools</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">2</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Laravel-PHP/">Laravel, PHP</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/SonarQube/">SonarQube</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/node-red/">node-red</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/slack-bot/">slack, bot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/toots/">toots</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition/">visual-recognition</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/visual-recognition-ibm-google/">visual-recognition, ibm, google</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/Laravel-PHP/" style="font-size: 10px;">Laravel, PHP</a> <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-red/" style="font-size: 20px;">node-red</a> <a href="/tags/slack-bot/" style="font-size: 10px;">slack, bot</a> <a href="/tags/toots/" style="font-size: 10px;">toots</a> <a href="/tags/visual-recognition/" style="font-size: 10px;">visual-recognition</a> <a href="/tags/visual-recognition-ibm-google/" style="font-size: 10px;">visual-recognition, ibm, google</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/04/">四月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/03/">三月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/09/">九月 2016</a><span class="sidebar-module-list-count">6</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/04/06/Manually-Authenticating-Users/">Manually Authenticating Users</a>
+        </li>
+      
+        <li>
+          <a href="/2017/03/28/Auto-deployment-on-vs-code/">Auto deployment on vs code</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/21/Create-a-slack-bot/">Create a slack bot</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/20/Custom-classifier-of-IBM-visual-recogintion/">Custom classifier of IBM visual recogintion</a>
+        </li>
+      
+        <li>
+          <a href="/2016/09/30/Visual-recognition-of-Google-IBM/">Visual recognition of Google/IBM</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Yu-Wen Huang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>
