@@ -3,21 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Auto deployment on vs code | The Moment</title>
+  <title>Archives: 2018/2 | The Moment</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一直進入不了開發狀態，一定是 editor 不順手造成的 (牽拖貌
-記錄一下小改造的過程">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Auto deployment on vs code">
-<meta property="og:url" content="http://napmas.github.io/2017/03/28/Auto-deployment-on-vs-code/index.html">
+  <meta name="description" content="溢出的腦漿暫存區">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Moment">
+<meta property="og:url" content="http://napmas.github.io/archives/2018/02/index.html">
 <meta property="og:site_name" content="The Moment">
-<meta property="og:description" content="一直進入不了開發狀態，一定是 editor 不順手造成的 (牽拖貌
-記錄一下小改造的過程">
-<meta property="og:updated_time" content="2017-03-28T09:55:02.000Z">
+<meta property="og:description" content="溢出的腦漿暫存區">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Auto deployment on vs code">
-<meta name="twitter:description" content="一直進入不了開發狀態，一定是 editor 不順手造成的 (牽拖貌
-記錄一下小改造的過程">
+<meta name="twitter:title" content="The Moment">
+<meta name="twitter:description" content="溢出的腦漿暫存區">
   
     <link rel="alternate" href="/atom.xml" title="The Moment" type="application/atom+xml">
   
@@ -56,7 +52,7 @@
           <li><a class=""
                  href="/index.html">Home</a></li>
         
-          <li><a class=""
+          <li><a class="active"
                  href="/archives/">Archives</a></li>
         
       </ul>
@@ -82,100 +78,40 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          <article id="post-Auto-deployment-on-vs-code" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
+          
+  
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <header class="archive-article-header">
     
   
-    <h1 class="article-title" itemprop="name">
-      Auto deployment on vs code
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/02/13/Turn-long-lat-to-administrative-region/">經緯座標轉行政區</a>
     </h1>
   
 
 
-  </header>
-
-  <div class="article-meta">
     <div class="article-datetime">
-  <a href="/2017/03/28/Auto-deployment-on-vs-code/" class="article-date"><time datetime="2017-03-28T09:05:32.000Z" itemprop="datePublished">2017-03-28</time></a>
+  <a href="/2018/02/13/Turn-long-lat-to-administrative-region/" class="archive-article-date"><time datetime="2018-02-13T01:23:13.000Z" itemprop="datePublished">二月 13日</time></a>
 </div>
 
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/tools/">tools</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一直進入不了開發狀態，一定是 editor 不順手造成的 (牽拖貌</p>
-<p>記錄一下小改造的過程
-<a id="more"></a></p>
-<p>Visual studio code 應該是目前免費的程式碼編輯器中算相當好用的，但美中不足的一個小地方是缺乏內建的自動佈署到遠端主機的機制，在只能在遠端進行測試的情況，頻繁的手動搬移檔案有點惱人，好在它跟目前多數的編輯器一樣，提供了一些客製功能的空間。以下是一個在 windows 10 的環境下的方式</p>
-<ol>
-<li><p><del>安裝 vs code</del></p>
-</li>
-<li><p>因為在 win 10，習慣的同步工具(rsync, scp … )通通從缺，好在還有一個免費的 winscp 可以用，為了自己好，裝了它。 (有 windows 版的 rsync ，但… 如果你需要走 ssh ，那… 還是直接裝 winscp 省心點)</p>
-</li>
-<li><p>vs code 中安裝 Run on save 這個人家寫好的 extension，並在 vs code 的環境設定檔( settings.json ) 內加上相關的設定。設定完它什麼事都還不會做，你必須指定它在存檔時要做的事 (cmd)。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// run on save</div><div class="line">"emeraldwalk.runonsave": &#123;</div><div class="line">    "commands": [</div><div class="line">        &#123;</div><div class="line">            "match": ".*",</div><div class="line">            "cmd": "sync_file.bat $&#123;workspaceRoot&#125; $&#123;file&#125;"</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>要下的 cmd 如果是在 un*x 下，大概只要下個 scp/rsync 就能收工，只可惜，我們是在<del>他媽的</del> windows 上，必要很苦命的寫個 batch 完成要做的事。run on save 預設的執行路徑是 vs code 的 home 的路徑，安裝時沒有手賤的話，通常會在 <code>C:\Program Files (x86)\Microsoft VS Code</code>，如果不想解決 run on save 解析執行路徑的問題，就把要它在存檔時執行的程式放這邊就好，，在上面的設定範例中，要執行的檔案叫 sync_file.bat 後頭接兩個參數: 目前 vs code 的工作目錄，跟目前正在編輯檔案的完整路徑，</p>
-</li>
-<li><p>要做的事很簡單，就是存檔後，上傳到遠端的某個相對的目錄下即可，範例程式碼如下 (不會寫 batch file ，從 stackoverflow 七拼八湊而來，有點蠢我知道 orz)，其中的重點在於<code>&quot;C:\Program Files (x86)\WinSCP\winscp&quot; &lt;remote_id&gt;:&lt;password&gt;@&lt;remote_host&gt; /command &quot;!script!&quot; &quot;exit&quot;</code> 這個 winscp 提供的 command line script 方式，請它把對的檔案 PUT 到對的地方去就。好。了，收工。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">@echo off</div><div class="line">setlocal enabledelayedexpansion</div><div class="line">set &quot;REMOTE_HOME=/&lt;your&gt;/&lt;remote&gt;/&lt;director&gt;&quot;</div><div class="line">set allargs=%*</div><div class="line">IF NOT DEFINED allargs echo no args provided&amp;GOTO :EOF </div><div class="line">call set curr_file=%%allargs:*%1=%%</div><div class="line">:: trim first white space character</div><div class="line">set curr_file=!curr_file:~1! </div><div class="line">set I=0</div><div class="line">set Idx=-1</div><div class="line">:l</div><div class="line">if &quot;!curr_file:~%I%,1!&quot;==&quot;&quot; goto ld</div><div class="line">if &quot;!curr_file:~%I%,1!&quot;==&quot;\&quot; set Idx=%I%</div><div class="line">set /a I+=1</div><div class="line">goto l</div><div class="line">:ld</div><div class="line">set curr_dir=!curr_file:~0, %Idx%!</div><div class="line">set I=0</div><div class="line">set Idx=-1</div><div class="line">set workspace=%1</div><div class="line">:l2</div><div class="line">if &quot;!workspace:~%I%,1!&quot;==&quot;&quot; goto ld2</div><div class="line">if &quot;!workspace:~%I%,1!&quot;==&quot;\&quot; set Idx=%I%</div><div class="line">    set /a I+=1</div><div class="line">    goto l2</div><div class="line">:ld2</div><div class="line">set /A idx+=1</div><div class="line">:: if current working directory == workspace , sync the file to remote</div><div class="line">echo.%curr_dir% | findstr /C:&quot;%1&quot; &gt; nul &amp;&amp; (</div><div class="line">    set relative_filename=!curr_file:~%Idx%!</div><div class="line">    :: replace &quot;\&quot; with &quot;/&quot;</div><div class="line">    set relative_filename=!relative_filename:\=/!</div><div class="line">    set &quot;script=put !curr_file! !REMOTE_HOME!/!relative_filename!&quot;</div><div class="line">    &quot;C:\Program Files (x86)\WinSCP\winscp&quot; &lt;remote_id&gt;:&lt;password&gt;@&lt;remote_host&gt; /command &quot;!script!&quot; &quot;exit&quot;</div><div class="line">) || (</div><div class="line">    REM echo &quot;not match, do nothing.&quot;</div><div class="line">)</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>p.s<br>winscp 同時也提供了 synchronize 指令(類似 rsync )，要的話也可以用 synchronize 同步兩地目錄即可，只是在目前我的情況下，我的開發環境不完全等同於測試環境，全部同步會有問題，而 synchronize 的-filemask (exclude) 用起來有點問題，短時間內不想處理，加上不一致這件事感覺不是什麼好事，也許之後留在 docker 一併解決吧。</p>
-<p>p.s<br>如果你害怕太自動的事情，似乎也可以寫在 vs code 的 Task 裡，在要的時候才手動執行。</p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="http://napmas.github.io/2017/03/28/Auto-deployment-on-vs-code/" data-id="cjdkyzu030000oudilyto2hqq" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/toots/">toots</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-    
-<ul id="article-nav" class="nav nav-pills nav-justified">
-  
-  <li role="presentation">
-    <a href="/2016/10/21/Create-a-slack-bot/" id="article-nav-older" class="article-nav-link-wrap">
-      <i class="fa fa-chevron-left pull-left"></i>
-      <span class="article-nav-link-title">Create a slack bot</span>
-    </a>
-  </li>
-  
-  
-  <li role="presentation">
-    <a href="/2017/04/06/Manually-Authenticating-Users/" id="article-nav-newer" class="article-nav-link-wrap">
-      <span class="article-nav-link-title">Manually Authenticating Users</span>
-      <i class="fa fa-chevron-right pull-right"></i>
-    </a>
-  </li>
-  
-</ul>
-
-
-  
+  </header>
 </article>
+
+  
+  
+    </div></section>
+  
 
 
 
